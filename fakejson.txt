@@ -2,7 +2,7 @@
   "success": true,
   "message": "-",
   "data": {
-    "mobil": "3",
-    "motor": "1"
+    "strokMobil": "3",
+    "strokMotor": "1"
   }
 }

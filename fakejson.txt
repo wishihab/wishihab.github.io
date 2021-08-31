@@ -1,8 +1,25 @@
 {
-  "success": true,
-  "message": "-",
-  "data": {
-    "strokMobil": "3",
-    "strokMotor": "1"
-  }
+    "job": {
+        "id": "a-very-long-job-id",
+        "result": {
+            "status": "success",
+            "analytic_type": "FACE_MATCH_LIVENESS",
+            "result": [
+                {
+                    "face_liveness": {
+                        "live": true,
+                        "live_score": 0.845223
+                    }
+                },
+                {
+                    "face_match": {
+                        "match": true,
+                        "smimilarity": 0.94731
+                    }
+                }
+            ],
+        }
+    },
+    "message": "Job successfully submitted!",
+    "ok": true
 }

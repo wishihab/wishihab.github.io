@@ -1,7 +1,7 @@
 {
     "job": {
         "id": "a-very-long-job-id",
-        "result": {
+        "coba": {
             "status": "success",
             "analytic_type": "FACE_MATCH_LIVENESS",
             "result": [

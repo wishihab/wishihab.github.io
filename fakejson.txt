@@ -1,5 +1,5 @@
 {
-    "job": {
+   "job": {
         "id": "a-very-long-job-id",
         "coba": {
             "status": "success",
@@ -17,9 +17,9 @@
                         "smimilarity": 0.94731
                     }
                 }
-            ],
+            ]
         }
     },
-    "message": "Job successfully submitted!",
-    "ok": true
+   "message": "Job successfully submitted!",
+   "ok": true
 }

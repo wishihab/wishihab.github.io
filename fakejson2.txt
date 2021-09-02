@@ -1,0 +1,11 @@
+{
+    "job": {
+        "id": "a-very-long-job-id",
+        "coba": {
+            "status": "success",
+            "analytic_type": "FACE_MATCH_LIVENESS",
+        }
+    },
+    "message": "Job successfully submitted!",
+    "ok": true
+}

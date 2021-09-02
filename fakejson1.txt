@@ -1,6 +1,6 @@
 {
    "job": {
-        "id": "a-very-long-job-id",
+        "id": "a-very-long-job-id"
     },
    "message": "Job successfully submitted!",
    "ok": true

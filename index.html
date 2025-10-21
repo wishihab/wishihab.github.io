@@ -330,10 +330,12 @@
       
       .project-card img {
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+        height: 250px;
+        object-fit: contain;
         border-radius: 8px;
         margin-bottom: 1rem;
+        background: #f8f9fa;
+        padding: 10px;
       }
       
       .project-card h3 {
@@ -454,18 +456,6 @@
           display: block;
         }
         
-        @media (min-width: 769px) {
-          .mobile-back-btn {
-            display: none !important;
-          }
-        }
-        
-        /* Ensure mobile back button is hidden on desktop */
-        @media (min-width: 1024px) {
-          .mobile-back-btn {
-            display: none !important;
-          }
-        }
         
         .iphone-frame {
           width: 300px;
@@ -537,6 +527,16 @@
           padding: 1rem;
         }
       }
+      
+      /* Hide mobile back button on desktop - outside mobile media query */
+      @media (min-width: 769px) {
+        .mobile-back-btn {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -585,15 +585,19 @@
                 <i class="fa fa-folder"></i>
                 <div class="app-label">Projects</div>
               </div>
-              <div class="app-icon" data-content="experience" style="background: linear-gradient(45deg, #34C759, #30D158);">
+              <div class="app-icon" data-content="experience" style="background: linear-gradient(45deg, #8E44AD, #9B59B6);">
                 <i class="fa fa-briefcase"></i>
                 <div class="app-label">Experience</div>
               </div>
-              <div class="app-icon" data-content="skills" style="background: linear-gradient(45deg, #AF52DE, #BF5AF2);">
+              <div class="app-icon" data-content="skills" style="background: linear-gradient(45deg, #E74C3C, #C0392B);">
                 <i class="fa fa-code"></i>
                 <div class="app-label">Skills</div>
               </div>
-              <div class="app-icon" data-content="scb" style="background: linear-gradient(45deg, #FF6B35, #FF8C42);">
+              <div class="app-icon" data-content="resume" style="background: linear-gradient(45deg, #F39C12, #E67E22);">
+               <i class="fa fa-file-text"></i>
+               <div class="app-label">Resume</div>
+             </div>
+              <div class="app-icon" data-content="scb" style="background: linear-gradient(45deg, #1ABC9C, #16A085);">
                 <i class="fa fa-globe"></i>
                 <div class="app-label">SCB</div>
               </div>
@@ -605,7 +609,7 @@
                 <i class="fa fa-android"></i>
                 <div class="app-label">JAKI</div>
               </div>
-            <div class="app-icon" data-content="tlive" style="background: linear-gradient(45deg, #FF9500, #FF6B35);">
+            <div class="app-icon" data-content="tlive" style="background: linear-gradient(45deg, #34C759, #30D158);">
               <i class="fa fa-android"></i>
               <div class="app-label">TLIVE</div>
             </div>
@@ -617,13 +621,13 @@
                 <i class="fa fa-user"></i>
                 <div class="dock-label">About</div>
               </div>
+              <div class="dock-icon" data-content="experience">
+                <i class="fa fa-briefcase"></i>
+                <div class="dock-label">Experience</div>
+              </div>
               <div class="dock-icon" data-content="contact">
                 <i class="fa fa-envelope"></i>
                 <div class="dock-label">Contact</div>
-              </div>
-              <div class="dock-icon" data-content="resume">
-                <i class="fa fa-file-text"></i>
-                <div class="dock-label">Resume</div>
               </div>
             </div>
             
@@ -646,8 +650,8 @@
             </div>
           </div>
           <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 style="color: #333; margin-bottom: 1rem; font-size: 2rem;">M. Alwi Shihab</h2>
             <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #007AFF;">
+            <h2 style="color: #333; margin-bottom: 1rem; font-size: 2rem;">M. Alwi Shihab</h2>
             <p style="color: #666; font-size: 1.1rem; line-height: 1.6; text-align: left;">Experiences in Mobile Development and passionate about creating user-centric public service applications. Excellent skill in designing and delivering Secure and Scalable solutions, with a strong focus on enhancing user safety and privacy in mobile applications.</p>
           </div>
           <div class="skills-grid">
@@ -696,47 +700,47 @@
           
           <!-- iOS Projects -->
           <div class="project-grid" id="ios-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem;">
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/movie-clone', '_blank')" style="cursor: pointer;">
               <img src="images/appstore.jpg" alt="Movie Clone">
               <h3>Movie Clone</h3>
               <p>Movie clone specific actress Jennifer Connelly</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-report.png" alt="JAKI Report">
               <h3>JAKI Report</h3>
               <p>Report feature in JAKI iOS App</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped">
               <h3>JAKI Wrapped</h3>
               <p>Year End Report feature in JAKI iOS App</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-pin.png" alt="JAKI PIN">
               <h3>JAKI PIN</h3>
               <p>Security PIN feature in JAKI iOS App</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality">
               <h3>JAKI Air Quality</h3>
               <p>Air Quality feature in JAKI iOS App</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/my-contact-api', '_blank')" style="cursor: pointer;">
               <img src="images/appstore.jpg" alt="My Contact API">
               <h3>My Contact API</h3>
               <p>Contact list based on randomuser</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga">
               <h3>JAKI Akun Warga</h3>
               <p>Citizen Account feature in JAKI iOS App</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau">
               <h3>JAKI Pulau</h3>
               <p>Island Information feature in JAKI iOS App</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-other.png" alt="JAKI Other Features">
               <h3>JAKI Other Features</h3>
               <p>Various other features in JAKI iOS App</p>
@@ -745,47 +749,47 @@
           
           <!-- Android Projects -->
           <div class="project-grid" id="android-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem; display: none;">
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer;">
               <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID">
               <h3>WEDEFEND ANDROID</h3>
               <p>MONITOR AND PROTECT ANDROID FROM REMOTE ACCESS TOOL TROJAN</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
               <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE">
               <h3>PPDB SD TLIVE</h3>
               <p>PENERIMAAN PESERTA DIDIK BARU</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
               <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE">
               <h3>CUACA TLIVE</h3>
               <p>KUALITAS UDARA DAN CUACA TLIVE V6</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-verifikasinik.PNG" alt="VERIFY ID">
               <h3>VERIFY ID</h3>
               <p>VERIFIKASI NIK - JAKARTA KINI</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
               <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6">
               <h3>TANGERANG LIVE V6</h3>
               <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
               <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE">
               <h3>LAKSA TLIVE</h3>
               <p>Layanan Aspirasi Kotak Saran Anda</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
               <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE">
               <h3>LOWONGAN KERJA TLIVE</h3>
               <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
               <img src="images/jaki.PNG" alt="Jakarta Kini (JAKI)">
               <h3>Jakarta Kini (JAKI)</h3>
               <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
               <img src="images/jaki_jakagd.PNG" alt="JAKAGD">
               <h3>JAKAGD</h3>
               <p>AMBULAN GAWAT DARURAT - JAKARTA KINI</p>
@@ -794,12 +798,12 @@
           
           <!-- Desktop Projects -->
           <div class="project-grid" id="desktop-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem; display: none;">
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-desktop', '_blank')" style="cursor: pointer;">
               <img src="images/wedefend_desktop.png" alt="WEDEFEND DESKTOP">
               <h3>WEDEFEND DESKTOP</h3>
               <p>Monitor and Protect Windows from Remote Access Trojan</p>
             </div>
-            <div class="project-card">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/paten-kota-tangerang', '_blank')" style="cursor: pointer;">
               <img src="images/paten.png" alt="PATEN KOTA TANGERANG">
               <h3>PATEN KOTA TANGERANG</h3>
               <p>PELAYANAN ADMINISTRASI TERPADU KECAMATAN</p>
@@ -813,7 +817,7 @@
             <h1>Work Experience</h1>
             <p>My professional journey in mobile development</p>
           </div>
-          <div style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem;">
+          <div style="height: calc(100vh - 120px); overflow-y: auto; padding-right: 10px; padding-bottom: 0;">
           <div class="experience-item">
             <h3>iOS Developer</h3>
             <div class="company">Jakarta Smart City</div>

@@ -11,6 +11,7 @@ const urlsToCache = [
   '/js/now-ui-kit.js',
   '/js/aos.js',
   '/images/cyber.jpg',
+  '/images/iphone17proiclarified.jpg',
   '/images/appstore.jpg'
 ];
 

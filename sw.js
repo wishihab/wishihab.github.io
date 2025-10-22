@@ -12,7 +12,25 @@ const urlsToCache = [
   '/js/aos.js',
   '/images/cyber.jpg',
   '/images/iphone17proiclarified.jpg',
-  '/images/appstore.jpg'
+  '/images/appstore.jpg',
+  '/images/jaki-ios-report.png',
+  '/images/jaki-ios-wrapped.png',
+  '/images/jaki-ios-pin.png',
+  '/images/jaki-ios-airquality.png',
+  '/images/jaki-ios-akunwarga.png',
+  '/images/jaki-ios-pulau.png',
+  '/images/jaki-ios-other.png',
+  '/images/wedefend_android.jpg',
+  '/images/tlive_ppdb.png',
+  '/images/tlive_cuaca.PNG',
+  '/images/jaki-verifikasinik.PNG',
+  '/images/tlive_simpatir_eabsen.PNG',
+  '/images/tlive_laksa.PNG',
+  '/images/tlive_kerja.PNG',
+  '/images/jaki.PNG',
+  '/images/jaki_jakagd.PNG',
+  '/images/wedefend_desktop.png',
+  '/images/paten.png'
 ];
 
 // Install event - cache resources

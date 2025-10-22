@@ -28,6 +28,12 @@
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//avatars1.githubusercontent.com">
     
+    <!-- Preload critical images for faster loading -->
+    <link rel="preload" href="images/iphone17proiclarified.jpg" as="image">
+    <link rel="preload" href="images/cyber.jpg" as="image">
+    <link rel="preload" href="https://avatars1.githubusercontent.com/u/23327081" as="image">
+    <link rel="preload" href="images/appstore.jpg" as="image">
+    
     <!-- Critical CSS inline for faster rendering -->
     <style>
       /* Critical above-the-fold styles */
@@ -1188,7 +1194,15 @@
         const criticalImages = [
           'images/cyber.jpg',
           'images/iphone17proiclarified.jpg',
-          'https://avatars1.githubusercontent.com/u/23327081'
+          'https://avatars1.githubusercontent.com/u/23327081',
+          'images/appstore.jpg',
+          'images/jaki-ios-report.png',
+          'images/jaki-ios-wrapped.png',
+          'images/jaki-ios-pin.png',
+          'images/jaki-ios-airquality.png',
+          'images/jaki-ios-akunwarga.png',
+          'images/jaki-ios-pulau.png',
+          'images/jaki-ios-other.png'
         ];
         
         criticalImages.forEach(src => {

@@ -85,7 +85,7 @@
       
       body {
         font-family: 'IBM Plex Sans', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #000;
         min-height: 100vh;
         overflow-x: hidden;
       }
@@ -144,7 +144,7 @@
         align-items: center;
         padding: 0 25px;
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
         position: relative;
       }
@@ -653,7 +653,7 @@
               <span>12:59</span>
               <div class="dynamic-island"></div>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="display: flex; align-items: end; gap: 1px; height: 12px;">
+                <div style="display: flex; align-items: end; gap: 1px; height: 10px;">
                   <div style="width: 2px; height: 3px; background: white; border-radius: 1px;"></div>
                   <div style="width: 2px; height: 5px; background: white; border-radius: 1px;"></div>
                   <div style="width: 2px; height: 7px; background: white; border-radius: 1px;"></div>
@@ -676,21 +676,36 @@
                 <div class="condition">Sunny</div>
                 <div style="font-size: 8px; color: rgba(255,255,255,0.7);">H:24° L:13°</div>
               </div>
-              <div class="widget battery-widget">
-                <h4>Batteries</h4>
-                <div class="battery-item">
-                  <div class="battery-circle charged"></div>
-                  <span>iPhone</span>
-                </div>
-                <div class="battery-item">
-                  <div class="battery-circle charging"></div>
-                  <span>MacBook</span>
-                </div>
-                <div class="battery-item">
-                  <div class="battery-circle charged"></div>
-                  <span>AirPods</span>
-                </div>
-              </div>
+               <div class="widget battery-widget">
+                 <h4>Batteries</h4>
+                 <div class="battery-item">
+                   <div style="display: flex; align-items: center; color: white;">
+                     <div style="width: 16px; height: 8px; border: 1px solid white; border-radius: 1px; position: relative; margin-right: 2px;">
+                       <div style="width: 12px; height: 4px; background: white; margin: 1px; border-radius: 0.5px;"></div>
+                     </div>
+                     <div style="width: 1px; height: 3px; background: white; border-radius: 0 0.5px 0.5px 0;"></div>
+                   </div>
+                   <span>iPhone</span>
+                 </div>
+                 <div class="battery-item">
+                   <div style="display: flex; align-items: center; color: white;">
+                     <div style="width: 16px; height: 8px; border: 1px solid white; border-radius: 1px; position: relative; margin-right: 2px;">
+                       <div style="width: 1.2px; height: 4px; background: white; margin: 1px; border-radius: 0.5px;"></div>
+                     </div>
+                     <div style="width: 1px; height: 3px; background: white; border-radius: 0 0.5px 0.5px 0;"></div>
+                   </div>
+                   <span>MacBook</span>
+                 </div>
+                 <div class="battery-item">
+                   <div style="display: flex; align-items: center; color: white;">
+                     <div style="width: 16px; height: 8px; border: 1px solid white; border-radius: 1px; position: relative; margin-right: 2px;">
+                       <div style="width: 6px; height: 4px; background: white; margin: 1px; border-radius: 0.5px;"></div>
+                     </div>
+                     <div style="width: 1px; height: 3px; background: white; border-radius: 0 0.5px 0.5px 0;"></div>
+                   </div>
+                   <span>AirPods</span>
+                 </div>
+               </div>
             </div>
             
             <!-- App Grid -->

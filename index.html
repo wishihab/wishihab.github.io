@@ -6,11 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>wishihab | Alwi</title>
     <meta name="description" content="wishihab CV. Personal site"/>
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700,200" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/aos.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles/main.css" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700,200" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="styles/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+      <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700,200" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="styles/main.css" rel="stylesheet">
+    </noscript>
+    
+    <!-- Defer non-critical CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="css/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//avatars1.githubusercontent.com">
+    
+    <!-- Critical CSS inline for faster rendering -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { 
+        font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0; 
+        padding: 0; 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      
+      .portfolio-container {
+        display: flex;
+        min-height: 100vh;
+        position: relative;
+      }
+      
+      .simulator-section {
+        width: 30%;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        position: relative;
+      }
+      
+      .content-section {
+        width: 70%;
+        background: #fff;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        height: 100vh;
+      }
+      
+      /* Loading state */
+      .loading {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .loaded {
+        opacity: 1;
+      }
+    </style>
+    
     <style>
       * {
         margin: 0;
@@ -539,7 +604,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="loading">
     <div class="portfolio-container">
       <!-- iOS Simulator Section (30%) -->
       <div class="simulator-section">
@@ -650,7 +715,7 @@
             </div>
           </div>
           <div style="text-align: center; margin-bottom: 2rem;">
-            <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #007AFF;">
+            <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #007AFF;" loading="lazy" decoding="async">
             <h2 style="color: #333; margin-bottom: 1rem; font-size: 2rem;">M. Alwi Shihab</h2>
             <p style="color: #666; font-size: 1.1rem; line-height: 1.6; text-align: left;">Experiences in Mobile Development and passionate about creating user-centric public service applications. Excellent skill in designing and delivering Secure and Scalable solutions, with a strong focus on enhancing user safety and privacy in mobile applications.</p>
           </div>
@@ -701,47 +766,47 @@
           <!-- iOS Projects -->
           <div class="project-grid" id="ios-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem;">
             <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193723738-81a8df48-bea2-4666-b1fb-1e11c88668a0.mp4', '_blank')" style="cursor: pointer;">
-              <img src="images/appstore.jpg" alt="Movie Clone">
+              <img src="images/appstore.jpg" alt="Movie Clone" loading="lazy" decoding="async">
               <h3>Movie Clone</h3>
               <p>Movie clone specific actress Jennifer Connelly</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-report.png" alt="JAKI Report">
+              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
               <h3>JAKI Report</h3>
               <p>Report feature in JAKI iOS App</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped">
+              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
               <h3>JAKI Wrapped</h3>
               <p>Year End Report feature in JAKI iOS App</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-pin.png" alt="JAKI PIN">
+              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
               <h3>JAKI PIN</h3>
               <p>Security PIN feature in JAKI iOS App</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality">
+              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
               <h3>JAKI Air Quality</h3>
               <p>Air Quality feature in JAKI iOS App</p>
             </div>
             <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193719354-0f334add-eaf8-4338-912f-7206db90a7fb.mp4', '_blank')" style="cursor: pointer;">
-              <img src="images/appstore.jpg" alt="My Contact API">
+              <img src="images/appstore.jpg" alt="My Contact API" loading="lazy" decoding="async">
               <h3>My Contact API</h3>
               <p>Contact list based on randomuser</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga">
+              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
               <h3>JAKI Akun Warga</h3>
               <p>Citizen Account feature in JAKI iOS App</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau">
+              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
               <h3>JAKI Pulau</h3>
               <p>Island Information feature in JAKI iOS App</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-other.png" alt="JAKI Other Features">
+              <img src="images/jaki-ios-other.png" alt="JAKI Other Features" loading="lazy" decoding="async">
               <h3>JAKI Other Features</h3>
               <p>Various other features in JAKI iOS App</p>
             </div>
@@ -750,47 +815,47 @@
           <!-- Android Projects -->
           <div class="project-grid" id="android-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem; display: none;">
             <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer;">
-              <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID">
+              <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID" loading="lazy" decoding="async">
               <h3>WEDEFEND ANDROID</h3>
               <p>MONITOR AND PROTECT ANDROID FROM REMOTE ACCESS TOOL TROJAN</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE">
+              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
               <h3>PPDB SD TLIVE</h3>
               <p>PENERIMAAN PESERTA DIDIK BARU</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE">
+              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
               <h3>CUACA TLIVE</h3>
               <p>KUALITAS UDARA DAN CUACA TLIVE V6</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-verifikasinik.PNG" alt="VERIFY ID">
+              <img src="images/jaki-verifikasinik.PNG" alt="VERIFY ID" loading="lazy" decoding="async">
               <h3>VERIFY ID</h3>
               <p>VERIFIKASI NIK - JAKARTA KINI</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6">
+              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
               <h3>TANGERANG LIVE V6</h3>
               <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE">
+              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
               <h3>LAKSA TLIVE</h3>
               <p>Layanan Aspirasi Kotak Saran Anda</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE">
+              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
               <h3>LOWONGAN KERJA TLIVE</h3>
               <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki.PNG" alt="Jakarta Kini (JAKI)">
+              <img src="images/jaki.PNG" alt="Jakarta Kini (JAKI)" loading="lazy" decoding="async">
               <h3>Jakarta Kini (JAKI)</h3>
               <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA</p>
             </div>
             <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki_jakagd.PNG" alt="JAKAGD">
+              <img src="images/jaki_jakagd.PNG" alt="JAKAGD" loading="lazy" decoding="async">
               <h3>JAKAGD</h3>
               <p>AMBULAN GAWAT DARURAT - JAKARTA KINI</p>
             </div>
@@ -799,12 +864,12 @@
           <!-- Desktop Projects -->
           <div class="project-grid" id="desktop-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem; display: none;">
             <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-desktop', '_blank')" style="cursor: pointer;">
-              <img src="images/wedefend_desktop.png" alt="WEDEFEND DESKTOP">
+              <img src="images/wedefend_desktop.png" alt="WEDEFEND DESKTOP" loading="lazy" decoding="async">
               <h3>WEDEFEND DESKTOP</h3>
               <p>Monitor and Protect Windows from Remote Access Trojan</p>
             </div>
             <div class="project-card" onclick="window.open('https://github.com/wishihab/paten-kota-tangerang', '_blank')" style="cursor: pointer;">
-              <img src="images/paten.png" alt="PATEN KOTA TANGERANG">
+              <img src="images/paten.png" alt="PATEN KOTA TANGERANG" loading="lazy" decoding="async">
               <h3>PATEN KOTA TANGERANG</h3>
               <p>PELAYANAN ADMINISTRASI TERPADU KECAMATAN</p>
             </div>
@@ -957,32 +1022,32 @@
           </div>
           <div class="project-grid" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
             <div class="project-card">
-              <img src="images/jaki-ios-report.png" alt="JAKI Report">
+              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
               <h3>JAKI Report</h3>
               <p>Report feature in JAKI iOS App - Jakarta's smart city application for citizen services and reporting.</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality">
+              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
               <h3>JAKI Air Quality</h3>
               <p>Air Quality monitoring feature in JAKI iOS App with real-time data and health recommendations.</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped">
+              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
               <h3>JAKI Wrapped</h3>
               <p>Year End Report feature in JAKI iOS App</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki-ios-pin.png" alt="JAKI PIN">
+              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
               <h3>JAKI PIN</h3>
               <p>Security PIN feature in JAKI iOS App</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga">
+              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
               <h3>JAKI Akun Warga</h3>
               <p>Citizen Account feature in JAKI iOS App</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau">
+              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
               <h3>JAKI Pulau</h3>
               <p>Island Information feature in JAKI iOS App</p>
             </div>
@@ -997,17 +1062,17 @@
           </div>
           <div class="project-grid" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
             <div class="project-card">
-              <img src="images/jaki.PNG" alt="Jakarta Kini">
+              <img src="images/jaki.PNG" alt="Jakarta Kini" loading="lazy" decoding="async">
               <h3>Jakarta Kini (JAKI)</h3>
               <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki_jakagd.PNG" alt="JAKAGD">
+              <img src="images/jaki_jakagd.PNG" alt="JAKAGD" loading="lazy" decoding="async">
               <h3>JAKAGD</h3>
               <p>AMBULAN GAWAT DARURAT - JAKARTA KINI</p>
             </div>
             <div class="project-card">
-              <img src="images/jaki-verifikasinik.PNG" alt="Verify ID">
+              <img src="images/jaki-verifikasinik.PNG" alt="Verify ID" loading="lazy" decoding="async">
               <h3>VERIFY ID</h3>
               <p>VERIFIKASI NIK - JAKARTA KINI</p>
             </div>
@@ -1022,27 +1087,27 @@
           </div>
           <div class="project-grid" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
             <div class="project-card">
-              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE">
+              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
               <h3>PPDB SD TLIVE</h3>
               <p>PENERIMAAN PESERTA DIDIK BARU</p>
             </div>
             <div class="project-card">
-              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE">
+              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
               <h3>CUACA TLIVE</h3>
               <p>KUALITAS UDARA DAN CUACA TLIVE V6</p>
             </div>
             <div class="project-card">
-              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6">
+              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
               <h3>TANGERANG LIVE V6</h3>
               <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6</p>
             </div>
             <div class="project-card">
-              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE">
+              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
               <h3>LAKSA TLIVE</h3>
               <p>Layanan Aspirasi Kotak Saran Anda</p>
             </div>
             <div class="project-card">
-              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE">
+              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
               <h3>LOWONGAN KERJA TLIVE</h3>
               <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG</p>
             </div>
@@ -1050,12 +1115,44 @@
         </div>
       </div>
     </div>
+    <!-- Critical JavaScript - load immediately -->
     <script src="js/core/jquery.3.2.1.min.js"></script>
-    <script src="js/core/popper.min.js"></script>
-    <script src="js/core/bootstrap.min.js"></script>
-    <script src="js/now-ui-kit.js?v=1.1.0"></script>
-    <script src="js/aos.js"></script>
+    
+    <!-- Defer non-critical JavaScript -->
+    <script src="js/core/popper.min.js" defer></script>
+    <script src="js/core/bootstrap.min.js" defer></script>
+    <script src="js/now-ui-kit.js?v=1.1.0" defer></script>
+    <script src="js/aos.js" defer></script>
     <script>
+      // Performance optimization: Preload critical images
+      function preloadCriticalImages() {
+        const criticalImages = [
+          'images/cyber.jpg',
+          'https://avatars1.githubusercontent.com/u/23327081'
+        ];
+        
+        criticalImages.forEach(src => {
+          const img = new Image();
+          img.src = src;
+        });
+      }
+      
+      // Start preloading immediately
+      preloadCriticalImages();
+      
+      // Register Service Worker for caching
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+      
       document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, initializing app...');
         
@@ -1196,7 +1293,8 @@
         
         // Add loading animation
         setTimeout(() => {
-          document.body.style.opacity = '1';
+          document.body.classList.remove('loading');
+          document.body.classList.add('loaded');
         }, 100);
         
         // Test click functionality

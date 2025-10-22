@@ -129,7 +129,7 @@
       .iphone-screen {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: url('images/iphone17proiclarified.jpg') center/cover no-repeat;
         border-radius: 39px;
         overflow: hidden;
         position: relative;
@@ -173,10 +173,10 @@
       }
       
       .widgets-section {
-        padding: 20px 20px 10px 20px;
+        padding: 25px 25px 15px 25px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        gap: 18px;
       }
       
       .widget {
@@ -189,8 +189,8 @@
       
       .widget h4 {
         color: white;
-        font-size: 12px;
-        margin: 0 0 8px 0;
+        font-size: 14px;
+        margin: 0 0 10px 0;
         font-weight: 600;
       }
       
@@ -202,14 +202,14 @@
       }
       
       .weather-widget .temp {
-        font-size: 24px;
+        font-size: 28px;
         font-weight: bold;
         color: white;
-        margin: 5px 0;
+        margin: 6px 0;
       }
       
       .weather-widget .condition {
-        font-size: 10px;
+        font-size: 12px;
         color: rgba(255,255,255,0.8);
       }
       
@@ -222,8 +222,8 @@
       .battery-item {
         display: flex;
         align-items: center;
-        gap: 8px;
-        font-size: 10px;
+        gap: 10px;
+        font-size: 12px;
         color: white;
       }
       
@@ -266,8 +266,9 @@
         transition: all 0.3s ease;
         position: relative;
         margin: 0 auto;
+        background: rgba(255,255,255,0.15);
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
       }
       
       .app-icon:hover {
@@ -300,7 +301,7 @@
         bottom: 20px;
         left: 20px;
         right: 20px;
-        height: 80px;
+        height: 60px;
         background: rgba(255,255,255,0.15);
         border-radius: 20px;
         backdrop-filter: blur(20px);
@@ -418,7 +419,7 @@
         border-radius: 12px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        border-left: 4px solid #007AFF;
+        border-left: 4px solid #1a1a2e;
       }
       
       .experience-item h3 {
@@ -427,7 +428,7 @@
       }
       
       .experience-item .company {
-        color: #007AFF;
+        color: #1a1a2e;
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
@@ -459,8 +460,8 @@
       }
       
       .skill-item i {
-        font-size: 2rem;
-        color: #007AFF;
+        font-size: 2.5rem;
+        color: #1a1a2e;
         margin-bottom: 0.5rem;
       }
       
@@ -523,52 +524,52 @@
         
         
         .iphone-frame {
-          width: 300px;
-          height: 600px;
+          width: 350px;
+          height: 700px;
         }
         
         .dynamic-island {
-          width: 126px;
-          height: 37px;
-          border-radius: 19px;
+          width: 100px;
+          height: 30px;
+          border-radius: 15px;
         }
         
         .app-grid {
-          padding: 15px;
-          gap: 12px;
+          padding: 20px;
+          gap: 15px;
         }
         
         .app-icon {
-          width: 45px;
-          height: 45px;
+          width: 55px;
+          height: 55px;
         }
         
         .app-icon i {
-          font-size: 20px;
+          font-size: 24px;
         }
         
         .app-label {
-          font-size: 8px;
+          font-size: 9px;
         }
         
         .dock {
-          bottom: 15px;
-          left: 15px;
-          right: 15px;
-          height: 70px;
+          bottom: 20px;
+          left: 20px;
+          right: 20px;
+          height: 60px;
         }
         
         .dock-icon {
-          width: 45px;
-          height: 45px;
+          width: 55px;
+          height: 55px;
         }
         
         .dock-icon i {
-          font-size: 20px;
+          font-size: 24px;
         }
         
         .dock-label {
-          font-size: 7px;
+          font-size: 8px;
         }
         
         .content-area {
@@ -651,9 +652,19 @@
             <div class="status-bar">
               <span>12:59</span>
               <div class="dynamic-island"></div>
-              <div style="display: flex; align-items: center; gap: 5px;">
-                <span>📶</span>
-                <span>🔋</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="display: flex; align-items: end; gap: 1px; height: 12px;">
+                  <div style="width: 2px; height: 3px; background: white; border-radius: 1px;"></div>
+                  <div style="width: 2px; height: 5px; background: white; border-radius: 1px;"></div>
+                  <div style="width: 2px; height: 7px; background: white; border-radius: 1px;"></div>
+                  <div style="width: 2px; height: 9px; background: white; border-radius: 1px;"></div>
+                </div>
+                <div style="display: flex; align-items: center; color: white;">
+                  <div style="width: 20px; height: 10px; border: 1px solid white; border-radius: 2px; position: relative; margin-right: 2px;">
+                    <div style="width: 15px; height: 6px; background: white; margin: 1px; border-radius: 1px;"></div>
+                  </div>
+                  <div style="width: 2px; height: 4px; background: white; border-radius: 0 1px 1px 0;"></div>
+                </div>
               </div>
             </div>
             
@@ -684,35 +695,35 @@
             
             <!-- App Grid -->
             <div class="app-grid">
-              <div class="app-icon" data-content="projects" style="background: linear-gradient(45deg, #FF3B30, #FF9500);">
+              <div class="app-icon" data-content="projects">
                 <i class="fa fa-folder"></i>
                 <div class="app-label">Projects</div>
               </div>
-              <div class="app-icon" data-content="experience" style="background: linear-gradient(45deg, #8E44AD, #9B59B6);">
+              <div class="app-icon" data-content="experience">
                 <i class="fa fa-briefcase"></i>
                 <div class="app-label">Experience</div>
               </div>
-              <div class="app-icon" data-content="skills" style="background: linear-gradient(45deg, #E74C3C, #C0392B);">
+              <div class="app-icon" data-content="skills">
                 <i class="fa fa-code"></i>
                 <div class="app-label">Skills</div>
               </div>
-              <div class="app-icon" data-content="resume" style="background: linear-gradient(45deg, #F39C12, #E67E22);">
+              <div class="app-icon" data-content="resume">
                <i class="fa fa-file-text"></i>
                <div class="app-label">Resume</div>
              </div>
-              <div class="app-icon" data-content="scb" style="background: linear-gradient(45deg, #1ABC9C, #16A085);">
+              <div class="app-icon" data-content="scb">
                 <i class="fa fa-globe"></i>
                 <div class="app-label">SCB</div>
               </div>
-              <div class="app-icon" data-content="jaki-ios" style="background: linear-gradient(45deg, #007AFF, #00D4FF);">
+              <div class="app-icon" data-content="jaki-ios">
                 <i class="fa fa-apple"></i>
                 <div class="app-label">JAKI</div>
               </div>
-              <div class="app-icon" data-content="jaki-android" style="background: linear-gradient(45deg, #34C759, #30D158);">
+              <div class="app-icon" data-content="jaki-android">
                 <i class="fa fa-android"></i>
                 <div class="app-label">JAKI</div>
               </div>
-            <div class="app-icon" data-content="tlive" style="background: linear-gradient(45deg, #34C759, #30D158);">
+            <div class="app-icon" data-content="tlive">
               <i class="fa fa-android"></i>
               <div class="app-label">TLIVE</div>
             </div>
@@ -753,29 +764,29 @@
             </div>
           </div>
           <div style="text-align: center; margin-bottom: 2rem;">
-            <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #007AFF;" loading="lazy" decoding="async">
+            <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #1a1a2e;" loading="lazy" decoding="async">
             <h2 style="color: #333; margin-bottom: 1rem; font-size: 2rem;">M. Alwi Shihab</h2>
             <p style="color: #666; font-size: 1.1rem; line-height: 1.6; text-align: left;">Experiences in Mobile Development and passionate about creating user-centric public service applications. Excellent skill in designing and delivering Secure and Scalable solutions, with a strong focus on enhancing user safety and privacy in mobile applications.</p>
           </div>
           <div class="skills-grid">
             <div class="skill-item">
-              <i class="fa fa-apple"></i>
+              <i class="fa fa-apple" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>iOS<br>Development</h4>
             </div>
             <div class="skill-item">
-              <i class="fa fa-android"></i>
+              <i class="fa fa-android" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>Android Development</h4>
             </div>
             <div class="skill-item">
-              <i class="fa fa-globe"></i>
+              <i class="fa fa-globe" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>Web Development</h4>
             </div>
             <div class="skill-item">
-              <i class="fa fa-shield"></i>
+              <i class="fa fa-shield" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>Security Awareness</h4>
             </div>
             <div class="skill-item">
-              <i class="fa fa-desktop"></i>
+              <i class="fa fa-desktop" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>Desktop Development</h4>
             </div>
           </div>
@@ -996,12 +1007,7 @@
             <div class="skill-item">
               <i class="fa fa-cogs"></i>
               <h4>DevOps</h4>
-              <p>Nginx, Apache, SSH,<br>Fastlane, CI/CD</p>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-paint-brush"></i>
-              <h4>UI/UX Design</h4>
-              <p>Material Design,<br>Human Interface Guidelines</p>
+              <p>Ubuntu, Nginx, Apache,<br> SSH, Fastlane, CI/CD</p>
             </div>
           </div>
         </div>
@@ -1014,22 +1020,22 @@
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
             <div class="skill-item" onclick="window.open('https://www.linkedin.com/in/wishihab/', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-linkedin"></i>
+              <i class="fa fa-linkedin" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>LinkedIn</h4>
               <p>linkedin.com/in/wishihab</p>
             </div>
             <div class="skill-item" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-github"></i>
+              <i class="fa fa-github" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>GitHub</h4>
               <p>github.com/wishihab</p>
             </div>
             <div class="skill-item" onclick="window.open('https://twitter.com/wishihab', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-twitter"></i>
+              <i class="fa fa-twitter" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>Twitter</h4>
               <p>@wishihab</p>
             </div>
             <div class="skill-item" onclick="window.open('https://instagram.com/wishihab', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-instagram"></i>
+              <i class="fa fa-instagram" style="color: #1a1a2e; font-size: 2.5rem;"></i>
               <h4>Instagram</h4>
               <p>@wishihab</p>
             </div>

@@ -572,24 +572,62 @@
         }
         
         .content-area {
-          height: calc(100vh - 60px);
+          height: 100vh;
           overflow-y: auto;
           padding: 1rem;
           position: relative;
+          padding-bottom: 0;
         }
         
         .content-header {
           margin-top: 80px !important;
+          margin-bottom: 1rem;
         }
         
-        
         .project-grid {
-          height: calc(100vh - 200px) !important;
+          height: calc(100vh - 120px);
+          overflow-y: auto;
+          padding-bottom: 1rem;
         }
         
         .experience-item {
           margin-bottom: 0.5rem;
           padding: 1rem;
+        }
+        
+        /* Fix mobile content sections to fill full height */
+        .content-section {
+          height: 100vh !important;
+          overflow: hidden;
+        }
+        
+        .content-section .content-area {
+          height: 100vh !important;
+          padding-bottom: 2rem;
+        }
+        
+        /* Ensure all content areas have proper spacing */
+        #experience-content,
+        #skills-content,
+        #contact-content,
+        #about-content {
+          height: 100vh !important;
+          overflow-y: auto;
+          padding-bottom: 2rem;
+        }
+        
+        /* Remove any default margins/padding that could cause gaps */
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+          height: 100vh !important;
+          overflow-x: hidden;
+        }
+        
+        /* Ensure mobile content sections fill the viewport */
+        .content-section.active {
+          height: 100vh !important;
+          min-height: 100vh !important;
         }
       }
       
@@ -764,7 +802,7 @@
           </div>
           
           <!-- iOS Projects -->
-          <div class="project-grid" id="ios-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem;">
+          <div class="project-grid" id="ios-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem;">
             <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193723738-81a8df48-bea2-4666-b1fb-1e11c88668a0.mp4', '_blank')" style="cursor: pointer;">
               <img src="images/appstore.jpg" alt="Movie Clone" loading="lazy" decoding="async">
               <h3>Movie Clone</h3>
@@ -813,7 +851,7 @@
           </div>
           
           <!-- Android Projects -->
-          <div class="project-grid" id="android-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem; display: none;">
+          <div class="project-grid" id="android-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem; display: none;">
             <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer;">
               <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID" loading="lazy" decoding="async">
               <h3>WEDEFEND ANDROID</h3>
@@ -862,7 +900,7 @@
           </div>
           
           <!-- Desktop Projects -->
-          <div class="project-grid" id="desktop-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 0.5rem; display: none;">
+          <div class="project-grid" id="desktop-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem; display: none;">
             <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-desktop', '_blank')" style="cursor: pointer;">
               <img src="images/wedefend_desktop.png" alt="WEDEFEND DESKTOP" loading="lazy" decoding="async">
               <h3>WEDEFEND DESKTOP</h3>
@@ -882,7 +920,7 @@
             <h1>Work Experience</h1>
             <p>My professional journey in mobile development</p>
           </div>
-          <div style="height: calc(100vh - 120px); overflow-y: auto; padding-right: 10px; padding-bottom: 0;">
+          <div style="height: calc(100vh - 120px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem;">
           <div class="experience-item">
             <h3>iOS Developer</h3>
             <div class="company">Jakarta Smart City</div>

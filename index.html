@@ -9,28 +9,25 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700,200" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="styles/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- <link rel="preload" href="styles/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
     
     <!-- Fallback for browsers that don't support preload -->
     <noscript>
       <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700,200" rel="stylesheet">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="styles/main.css" rel="stylesheet">
     </noscript>
     
     <!-- Defer non-critical CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-    <link href="css/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- DNS prefetch for external domains -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//avatars1.githubusercontent.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     
     <!-- Preload critical images for faster loading -->
     <link rel="preload" href="images/iphone17proiclarified.jpg" as="image">
-    <link rel="preload" href="images/cyber.jpg" as="image">
     <link rel="preload" href="https://avatars1.githubusercontent.com/u/23327081" as="image">
     <link rel="preload" href="images/appstore.jpg" as="image">
     
@@ -252,6 +249,65 @@
         padding: 0 12px;
         font-size: 12px;
         color: #cccccc;
+      }
+
+      /* Programming Tools Section */
+      .xcode-tools-section {
+        margin-top: 16px;
+        border-top: 1px solid #3e3e42;
+        padding-top: 8px;
+      }
+
+      .xcode-tools-header {
+        display: flex;
+        align-items: center;
+        padding: 4px 6px;
+        font-size: 13px;
+        color: #cccccc;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .xcode-tools-header:hover {
+        background: #3e3e42;
+      }
+
+      .xcode-tools-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        padding: 10px 16px;
+      }
+
+      .xcode-tool-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: #3e3e42;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid #4a4a4a;
+      }
+
+      .xcode-tool-item:hover {
+        background: #4a4a4a;
+        transform: scale(1.05);
+        border-color: #5a5a5a;
+      }
+
+      .tool-icon {
+        width: 24px;
+        height: 24px;
+        filter: brightness(0.9);
+        transition: filter 0.2s ease;
+      }
+
+      .xcode-tool-item:hover .tool-icon {
+        filter: brightness(1.1);
       }
 
       /* Safari Browser Popup Styles */
@@ -991,6 +1047,10 @@
         cursor: pointer;
         transition: all 0.3s ease;
         position: relative;
+        will-change: transform, opacity;
+        contain: layout style paint;
+        backface-visibility: hidden;
+        transform: translateZ(0);
         margin: 0 auto;
         background: rgba(255,255,255,0.15);
         backdrop-filter: blur(20px);
@@ -1048,6 +1108,10 @@
         justify-content: center;
         cursor: pointer;
         transition: all 0.3s ease;
+        will-change: transform, opacity;
+        contain: layout style paint;
+        backface-visibility: hidden;
+        transform: translateZ(0);
       }
       
       .dock-icon i {
@@ -1402,52 +1466,52 @@
             
             <!-- App Grid -->
             <div class="app-grid">
-              <div class="app-icon" data-content="projects">
-                <i class="fa fa-folder"></i>
+              <div class="app-icon" data-content="projects" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-folder" style="font-display: swap;"></i>
                 <div class="app-label">Projects</div>
               </div>
-              <div class="app-icon" data-content="experience">
-                <i class="fa fa-briefcase"></i>
+              <div class="app-icon" data-content="experience" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-briefcase" style="font-display: swap;"></i>
                 <div class="app-label">Experience</div>
               </div>
-              <div class="app-icon" data-content="skills">
-                <i class="fa fa-code"></i>
+              <div class="app-icon" data-content="skills" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-code" style="font-display: swap;"></i>
                 <div class="app-label">Skills</div>
               </div>
-              <div class="app-icon" data-content="resume">
-               <i class="fa fa-file-text"></i>
+              <div class="app-icon" data-content="resume" style="will-change: transform, opacity; contain: layout style paint;">
+               <i class="fa fa-file-text" style="font-display: swap;"></i>
                <div class="app-label">Resume</div>
              </div>
-              <div class="app-icon" data-content="jaki-ios">
-                <i class="fa fa-apple"></i>
+              <div class="app-icon" data-content="jaki-ios" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-apple" style="font-display: swap;"></i>
                 <div class="app-label">JAKI</div>
               </div>
-              <div class="app-icon" data-content="jaki-android">
-                <i class="fa fa-android"></i>
+              <div class="app-icon" data-content="jaki-android" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-android" style="font-display: swap;"></i>
                 <div class="app-label">JAKI</div>
               </div>
-            <div class="app-icon" data-content="tlive">
-              <i class="fa fa-android"></i>
+            <div class="app-icon" data-content="tlive" style="will-change: transform, opacity; contain: layout style paint;">
+              <i class="fa fa-android" style="font-display: swap;"></i>
               <div class="app-label">TLIVE</div>
             </div>
-            <div class="app-icon" data-content="scb">
-              <i class="fa fa-globe"></i>
+            <div class="app-icon" data-content="scb" style="will-change: transform, opacity; contain: layout style paint;">
+              <i class="fa fa-globe" style="font-display: swap;"></i>
               <div class="app-label">SCB</div>
             </div>
           </div>
             
             <!-- Dock -->
             <div class="dock">
-              <div class="dock-icon" data-content="about">
-                <i class="fa fa-user"></i>
+              <div class="dock-icon" data-content="about" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-user" style="font-display: swap;"></i>
                 <div class="dock-label">About</div>
               </div>
-              <div class="dock-icon" data-content="experience">
-                <i class="fa fa-briefcase"></i>
+              <div class="dock-icon" data-content="experience" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-briefcase" style="font-display: swap;"></i>
                 <div class="dock-label">Experience</div>
               </div>
-              <div class="dock-icon" data-content="contact">
-                <i class="fa fa-envelope"></i>
+              <div class="dock-icon" data-content="contact" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-envelope" style="font-display: swap;"></i>
                 <div class="dock-label">Contact</div>
               </div>
             </div>
@@ -1540,6 +1604,17 @@
                 </div>
               </div>
               
+              <!-- Programming Tools Section -->
+              <div class="xcode-tools-section" id="xcode-tools-section">
+                <div class="xcode-tools-header">
+                  <div class="xcode-folder-icon">🛠️</div>
+                  <div class="xcode-folder-name">Tools</div>
+                </div>
+                <div class="xcode-tools-grid" id="xcode-tools-grid">
+                  <!-- Tools will be loaded conditionally based on screen size -->
+                </div>
+              </div>
+              
             </div>
           </div>
           
@@ -1615,26 +1690,158 @@
         });
       }
       
-      // Preload critical images
+      // Preload critical images with priority
       function preloadImages() {
         const criticalImages = [
           'images/iphone17proiclarified.jpg',
-          'images/cyber.jpg',
           'https://avatars1.githubusercontent.com/u/23327081'
         ];
         
-        criticalImages.forEach(src => {
+        // High priority loading for critical images
+        criticalImages.forEach((src, index) => {
           const img = new Image();
+          img.priority = 'high';
+          img.fetchPriority = 'high';
           img.src = src;
+          
+          // Add loading states
+          img.onload = () => {
+            // Image loaded successfully
+          };
+          
+          img.onerror = () => {
+            // Image failed to load
+          };
         });
+      }
+
+      // Preload app icons with high priority
+      function preloadAppIcons() {
+        const appIcons = document.querySelectorAll('.app-icon, .dock-icon');
+        
+        appIcons.forEach((icon, index) => {
+          // Add priority attributes to app icons
+          icon.style.willChange = 'transform, opacity';
+          icon.style.contain = 'layout style paint';
+          
+          // Preload FontAwesome icons
+          const iconElement = icon.querySelector('i');
+          if (iconElement) {
+            iconElement.style.fontDisplay = 'swap';
+            iconElement.style.fontVariationSettings = 'normal';
+          }
+          
+          // Add loading optimization
+          icon.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+          }, { passive: true });
+          
+          icon.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+          }, { passive: true });
+        });
+        
+        // App icons preloaded with high priority
+      }
+
+      // Check if device is mobile
+      function isMobileDevice() {
+        return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+
+      // Tools data for conditional loading
+      const toolsData = [
+        { name: 'Git CLI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', alt: 'Git CLI' },
+        { name: 'Xcode', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg', alt: 'Xcode' },
+        { name: 'Android Studio', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg', alt: 'Android Studio' },
+        { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg', alt: 'VS Code' },
+        { name: 'Cursor', icon: 'https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/cursor.png', alt: 'Cursor' },
+        { name: 'Swift', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg', alt: 'Swift' },
+        { name: 'UIKit', icon: 'https://getuikit.com/images/uikit-logo.svg', alt: 'UIKit' },
+        { name: 'Fastlane', icon: 'https://cdn.brandfetch.io/idMBlgerCH/w/300/h/300/theme/dark/icon.png?c=1bxid64Mup7aczewSAYMX&t=1756136810924', alt: 'Fastlane' },
+        { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', alt: 'Java' },
+        { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', alt: 'Python' },
+        { name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', alt: 'HTML' },
+        { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg', alt: 'PHP' },
+        { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg', alt: 'Laravel' },
+        { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', alt: 'MySQL' },
+        { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', alt: 'PostgreSQL' },
+        { name: 'Ubuntu', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg', alt: 'Ubuntu' },
+        { name: 'SSH', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original-wordmark.svg', alt: 'SSH' },
+        { name: 'Nginx', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg', alt: 'Nginx' },
+        { name: 'Apache', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg', alt: 'Apache' },
+        { name: 'Sourcetree', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sourcetree/sourcetree-original.svg', alt: 'Sourcetree' },
+        { name: 'Composer', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/composer/composer-original.svg', alt: 'Composer' },
+        { name: 'Homebrew', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/homebrew/homebrew-original-wordmark.svg', alt: 'Homebrew' },
+        { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', alt: 'GitHub' },
+        { name: 'DBeaver', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbeaver/dbeaver-original.svg', alt: 'DBeaver' },
+        { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg', alt: 'Postman' },
+        { name: 'DigitalOcean', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg', alt: 'DigitalOcean' },
+        { name: 'Spotify', icon: 'https://cdn-icons-png.flaticon.com/128/5968/5968959.png', alt: 'Spotify' },
+        { name: 'Apple Music', icon: 'https://cdn-icons-png.flaticon.com/128/14777/14777073.png', alt: 'Apple Music' }
+      ];
+
+      // Conditionally load tools based on device type
+      function loadToolsConditionally() {
+        const toolsGrid = document.getElementById('xcode-tools-grid');
+        const toolsSection = document.getElementById('xcode-tools-section');
+        
+        if (!toolsGrid || !toolsSection) return;
+
+        // Only load tools on desktop/larger screens
+        if (isMobileDevice()) {
+          toolsSection.style.display = 'none';
+          return;
+        }
+        
+        // Load tools with lazy loading for better performance
+        toolsData.forEach((tool, index) => {
+          const toolItem = document.createElement('div');
+          toolItem.className = 'xcode-tool-item';
+          toolItem.innerHTML = `
+            <img src="${tool.icon}" alt="${tool.alt}" class="tool-icon" loading="lazy">
+          `;
+          toolsGrid.appendChild(toolItem);
+        });
+
+        // Add hover effects after tools are loaded
+        setTimeout(() => {
+          document.querySelectorAll('.xcode-tool-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+              this.style.transform = 'scale(1.05)';
+            }, { passive: true });
+            
+            item.addEventListener('mouseleave', function() {
+              this.style.transform = 'scale(1)';
+            }, { passive: true });
+          });
+        }, 100);
       }
       document.addEventListener('DOMContentLoaded', function() {
         // Initialize performance optimizations
         optimizeAnimations();
         preloadImages();
+        preloadAppIcons();
+        loadToolsConditionally();
+        
+        // Handle window resize for responsive behavior
+        window.addEventListener('resize', function() {
+          const toolsSection = document.getElementById('xcode-tools-section');
+          if (toolsSection) {
+            if (isMobileDevice()) {
+              toolsSection.style.display = 'none';
+            } else {
+              toolsSection.style.display = 'block';
+              // Reload tools if they haven't been loaded yet
+              const toolsGrid = document.getElementById('xcode-tools-grid');
+              if (toolsGrid && toolsGrid.children.length === 0) {
+                loadToolsConditionally();
+              }
+            }
+          }
+        });
         
         // Initialize Xcode interface
-        console.log('Xcode interface loaded');
         
         // Add click handlers for folder items
         document.querySelectorAll('.xcode-folder-item').forEach(item => {
@@ -1821,40 +2028,13 @@
         
         <!-- JAKI iOS, JAKI Android, and TLIVE Content - MOVED TO SAFARI PROJECT POPUP -->
       
-    <!-- Critical JavaScript - load immediately -->
-    <script src="js/core/jquery.3.2.1.min.js"></script>
-    
-    <!-- Defer non-critical JavaScript -->
-    <script src="js/core/popper.min.js" defer></script>
-    <script src="js/core/bootstrap.min.js" defer></script>
-    <script src="js/now-ui-kit.js?v=1.1.0" defer></script>
-    <script src="js/aos.js" defer></script>
+    <!-- All JavaScript is now inline for better performance -->
     <script>
       // Performance optimization: Preload critical images
       function preloadCriticalImages() {
         const criticalImages = [
-          'images/cyber.jpg',
           'images/iphone17proiclarified.jpg',
           'https://avatars1.githubusercontent.com/u/23327081',
-          'images/appstore.jpg',
-          'images/jaki-ios-report.png',
-          'images/jaki-ios-wrapped.png',
-          'images/jaki-ios-pin.png',
-          'images/jaki-ios-airquality.png',
-          'images/jaki-ios-akunwarga.png',
-          'images/jaki-ios-pulau.png',
-          'images/jaki-ios-other.png',
-          'images/jaki.PNG',
-          'images/jaki_jakagd.PNG',
-          'images/jaki-verifikasinik.PNG',
-          'images/tlive_ppdb.png',
-          'images/tlive_simpatir_eabsen.PNG',
-          'images/tlive_laksa.PNG',
-          'images/tlive_kerja.PNG',
-          'images/tlive_cuaca.PNG',
-          'images/wedefend_android.jpg',
-          'images/wedefend_desktop.png',
-          'images/paten.png'
         ];
         
         criticalImages.forEach(src => {
@@ -1867,38 +2047,30 @@
       preloadCriticalImages();
       
       // Register Service Worker for caching
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-              console.log('SW registered: ', registration);
-            })
-            .catch(function(registrationError) {
-              console.log('SW registration failed: ', registrationError);
-            });
-        });
-      }
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+              .then(function(registration) {
+                // Service worker registered successfully
+              })
+              .catch(function(registrationError) {
+                // Service worker registration failed
+              });
+          });
+        }
       
       document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM loaded, initializing app...');
-        
         const appIcons = document.querySelectorAll('.app-icon');
         const dockIcons = document.querySelectorAll('.dock-icon');
         const contentAreas = document.querySelectorAll('.content-area');
         const allClickableIcons = [...appIcons, ...dockIcons];
         
-        console.log('Found app icons:', appIcons.length);
-        console.log('Found dock icons:', dockIcons.length);
-        console.log('Found content areas:', contentAreas.length);
-        
         allClickableIcons.forEach((icon, index) => {
-          console.log(`Setting up icon ${index}:`, icon.getAttribute('data-content'));
           icon.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
             const contentId = this.getAttribute('data-content');
-            console.log('Clicked icon:', contentId);
             
             // Handle external links with confirmation popup
             if (contentId === 'scb') {
@@ -1946,10 +2118,8 @@
             
             // Show selected content area
             const targetContent = document.getElementById(contentId + '-content');
-            console.log('Target content:', targetContent);
             if (targetContent) {
               targetContent.classList.add('active');
-              console.log('Content area activated:', contentId + '-content');
               
               // Handle mobile view - show content section only for non-Safari popup content
               if (window.innerWidth <= 768) {
@@ -1959,7 +2129,6 @@
                   const contentSection = document.querySelector('.content-section');
                   if (contentSection) {
                     contentSection.classList.add('active');
-                    console.log('Mobile content section activated');
                   }
                 } else {
                   // For Safari popup content, show the popup instead
@@ -2043,9 +2212,8 @@
         }, 100);
         
         // Test click functionality
-        console.log('Testing click functionality...');
         document.querySelectorAll('.app-icon').forEach((icon, index) => {
-          console.log(`Icon ${index} clickable:`, icon);
+          // Icon clickable
         });
         
       });

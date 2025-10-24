@@ -41,7 +41,7 @@
         font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         margin: 0; 
         padding: 0; 
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #1a1a1a;
         min-height: 100vh;
         overflow-x: hidden;
       }
@@ -50,6 +50,7 @@
         display: flex;
         min-height: 100vh;
         position: relative;
+        order: 2;
       }
       
       .simulator-section {
@@ -60,15 +61,627 @@
         align-items: center;
         padding: 2rem;
         position: relative;
+        order: 2;
       }
       
       .content-section {
         width: 70%;
-        background: #fff;
+        background: #1e1e1e;
         padding: 0;
         overflow: hidden;
         position: relative;
         height: 100vh;
+        order: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Xcode-style interface */
+      .xcode-interface {
+        display: flex;
+        height: 100vh;
+        background: #1e1e1e;
+        color: #ffffff;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      }
+      
+      .xcode-sidebar {
+        width: 280px;
+        background: #2d2d30;
+        border-right: 1px solid #3e3e42;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .xcode-sidebar-header {
+        padding: 8px 12px;
+        background: #2d2d30;
+        border-bottom: 1px solid #3e3e42;
+        font-size: 13px;
+        color: #cccccc;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .xcode-project-tree {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px 0;
+      }
+      
+      .xcode-folder-item {
+        display: flex;
+        align-items: center;
+        padding: 2px 6px;
+        cursor: pointer;
+        font-size: 13px;
+        color: #cccccc;
+        transition: background-color 0.2s;
+      }
+      
+      .xcode-folder-item:hover {
+        background: #3e3e42;
+      }
+      
+      .xcode-folder-item.expanded {
+        background: #3e3e42;
+      }
+      
+      .xcode-folder-icon {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+      }
+      
+      .xcode-folder-name {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+      }
+      
+      .xcode-folder-children {
+        margin-left: 8px;
+        display: none;
+      }
+      
+      .xcode-folder-item.expanded .xcode-folder-children {
+        display: block;
+      }
+      
+      .xcode-editor {
+        flex: 1;
+        background: #1e1e1e;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .xcode-editor-tabs {
+        background: #2d2d30;
+        border-bottom: 1px solid #3e3e42;
+        display: flex;
+        padding: 0;
+        height: 36px;
+      }
+      
+      .xcode-tab {
+        padding: 8px 16px;
+        background: #2d2d30;
+        border-right: 1px solid #3e3e42;
+        cursor: pointer;
+        font-size: 13px;
+        color: #cccccc;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 120px;
+        position: relative;
+      }
+      
+      .xcode-tab.active {
+        background: #1e1e1e;
+        color: #ffffff;
+      }
+      
+      .xcode-tab-close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #5a5a5a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: #ffffff;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      
+      .xcode-tab:hover .xcode-tab-close {
+        opacity: 1;
+      }
+      
+      .xcode-code-editor {
+        flex: 1;
+        background: #1e1e1e;
+        padding: 16px;
+        overflow-y: auto;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      
+      .xcode-code-line {
+        margin: 2px 0;
+        white-space: pre;
+      }
+      
+      .xcode-comment {
+        color: #6a9955;
+      }
+      
+      .xcode-keyword {
+        color: #569cd6;
+      }
+      
+      .xcode-string {
+        color: #ce9178;
+      }
+      
+      .xcode-type {
+        color: #4ec9b0;
+      }
+      
+      .xcode-number {
+        color: #b5cea8;
+      }
+      
+      .xcode-bottom-bar {
+        background: #2d2d30;
+        border-top: 1px solid #3e3e42;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        font-size: 12px;
+        color: #cccccc;
+      }
+
+      /* Safari Browser Popup Styles */
+      .safari-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+
+      .safari-overlay.active {
+        display: block;
+      }
+
+      .safari-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 1200px;
+        height: 90%;
+        max-height: 800px;
+        background: #1e1e1e;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #333;
+      }
+
+      .safari-popup.active {
+        display: flex;
+      }
+
+      .safari-header {
+        background: #2d2d30;
+        border-bottom: 1px solid #3e3e42;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .safari-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .safari-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .safari-button.close {
+        background: #ff5f57;
+      }
+
+      .safari-button.minimize {
+        background: #ffbd2e;
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .safari-button.maximize {
+        background: #28ca42;
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .safari-address-bar {
+        flex: 1;
+        background: #1e1e1e;
+        border: 1px solid #3e3e42;
+        border-radius: 6px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+      }
+
+      .safari-url {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .safari-content {
+        flex: 1;
+        padding: 24px;
+        overflow-y: auto;
+        background: #1e1e1e;
+        color: #ffffff;
+      }
+
+      .safari-content h1 {
+        color: #ffffff;
+        margin-bottom: 16px;
+        font-size: 28px;
+      }
+
+      .safari-content h2 {
+        color: #ffffff;
+        margin: 24px 0 12px 0;
+        font-size: 20px;
+      }
+
+      .safari-content h3 {
+        color: #ffffff;
+        margin: 16px 0 8px 0;
+        font-size: 18px;
+      }
+
+      .safari-content h4 {
+        color: #ffffff;
+        margin: 12px 0 6px 0;
+        font-size: 16px;
+      }
+
+      .safari-content p {
+        color: #ebebeb;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .safari-content ul {
+        color: #cccccc;
+        padding-left: 20px;
+        margin-bottom: 16px;
+      }
+
+      .safari-content li {
+        margin-bottom: 8px;
+      }
+
+      .project-item, .experience-item {
+        background: #2d2d30;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border-left: 4px solid #ffffff;
+        color: #ffffff;
+      }
+
+      .date {
+        color: #cccccc;
+        font-size: 14px;
+        font-style: italic;
+      }
+
+      .skills-grid {
+        display: grid;
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .skill-item {
+        background: #f8f9fa;
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .skill-bar {
+        background: #e9ecef;
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .skill-progress {
+        background: #007AFF;
+        height: 100%;
+        transition: width 0.3s ease;
+      }
+
+      .contact-info {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 16px;
+      }
+
+      .download-btn {
+        background: #007AFF;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 16px;
+        transition: background 0.2s;
+      }
+
+      .download-btn:hover {
+        background: #0056b3;
+      }
+      
+      .xcode-status {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      
+      .xcode-status-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      
+      .xcode-status-icon {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #4caf50;
+      }
+      
+      .xcode-status-icon.warning {
+        background: #ff9800;
+      }
+      
+      .xcode-status-icon.error {
+        background: #f44336;
+      }
+      
+      
+      .safari-overlay.active {
+        display: block;
+      }
+      
+      .safari-popup .content-header {
+        background: #1a1a1a;
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      
+      .safari-popup .content-header h1 {
+        color: white;
+        margin-bottom: 0.5rem;
+        font-size: 2.5rem;
+      }
+      
+      .safari-popup .content-header p {
+        color: rgba(255,255,255,0.9);
+        font-size: 1.2rem;
+      }
+      
+      .safari-popup .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .safari-popup .skill-item {
+        background: #1c1c1c;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+      
+      .safari-popup .skill-item:hover {
+        border-color: #007AFF;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      
+      .safari-popup .skill-item i {
+        font-size: 2.5rem;
+        color: #ebebeb;
+        margin-bottom: 1rem;
+      }
+      
+      .safari-popup .skill-item h4 {
+        color: #fff;
+        font-size: 1.1rem;
+        margin: 0;
+      }
+      
+      .safari-popup .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .safari-popup .project-card {
+        background: #1c1c1c;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        border: 1px solid #e9ecef;
+      }
+      
+      .safari-popup .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      }
+      
+      .safari-popup .project-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+      
+      .safari-popup .project-card h3 {
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+      }
+      
+      .safari-popup .project-card p {
+        color: #868e96;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      
+      .safari-popup .experience-item {
+        background: #1c1c1c;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #495057;
+      }
+      
+      .safari-popup .experience-item h3 {
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+      }
+      
+      .safari-popup .experience-item .company {
+        color: #007AFF;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      .safari-popup .experience-item .period {
+        color: #ebebeb;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      
+      .safari-popup .experience-item p {
+        color: #ebebeb;
+        line-height: 1.6;
+      }
+      
+      .safari-popup .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .safari-popup .contact-item {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+      
+      .safari-popup .contact-item:hover {
+        border-color: #007AFF;
+        transform: translateY(-2px);
+      }
+      
+      .safari-popup .contact-item i {
+        font-size: 2rem;
+        color: #007AFF;
+        margin-bottom: 1rem;
+      }
+      
+      .safari-popup .contact-item h4 {
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+      
+      .safari-popup .contact-item p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+      
+      .safari-popup .resume-section {
+        text-align: center;
+        padding: 3rem 2rem;
+      }
+      
+      .safari-popup .resume-section h2 {
+        color: #333;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+      }
+      
+      .safari-popup .resume-download {
+        background: #007AFF;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .safari-popup .resume-download:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,122,255,0.3);
       }
       
       /* Loading state */
@@ -100,6 +713,7 @@
         display: flex;
         min-height: 100vh;
         position: relative;
+        order: 2;
       }
       
       .simulator-section {
@@ -110,6 +724,7 @@
         align-items: center;
         padding: 2rem;
         position: relative;
+        order: 2;
       }
       
       .content-section {
@@ -119,6 +734,7 @@
         overflow: hidden;
         position: relative;
         height: 100vh;
+        order: 1;
       }
       
       .iphone-frame {
@@ -153,6 +769,7 @@
         font-size: 14px;
         font-weight: 600;
         position: relative;
+        order: 2;
       }
       
       .dynamic-island {
@@ -239,6 +856,7 @@
         border-radius: 50%;
         border: 1px solid rgba(255,255,255,0.3);
         position: relative;
+        order: 2;
       }
       
       .battery-circle.charged {
@@ -507,26 +1125,6 @@
           transform: translateY(0);
         }
         
-        .mobile-back-btn {
-          position: fixed;
-          top: 20px;
-          left: 20px;
-          z-index: 1001;
-          background: #1a1a2e;
-          color: white;
-          border: none;
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-          font-size: 24px;
-          cursor: pointer;
-          display: none;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .content-section.active .mobile-back-btn {
-          display: block;
-        }
         
         
         .iphone-frame {
@@ -638,15 +1236,6 @@
         }
       }
       
-      /* Hide mobile back button on desktop - outside mobile media query */
-      @media (min-width: 769px) {
-        .mobile-back-btn {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-        }
-      }
     </style>
   </head>
   <body class="loading">
@@ -771,499 +1360,277 @@
         </div>
       </div>
       
-      <!-- Content Section (70%) -->
+      <!-- Content Section (70%) - Xcode Interface -->
       <div class="content-section">
-        <button class="mobile-back-btn" onclick="document.querySelector('.content-section').classList.remove('active')">
-          <i class="fa fa-arrow-left"></i>
-        </button>
-        <!-- About Content -->
-        <div class="content-area active" id="about-content">
-          <div class="content-header" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/cyber.jpg'); background-size: cover; background-position: center; color: white; padding: 6rem 2rem; border-radius: 12px; margin-bottom: 2rem; position: relative;">
-            <div style="position: absolute; bottom: 2rem; left: 2rem;">
-              <h1 style="color: white; margin-bottom: 0.5rem; font-size: 2.5rem;">About Me</h1>
-              <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem;">Mobile Developer • Security Enthusiast • Amateur</p>
-            </div>
-          </div>
-          <div style="text-align: center; margin-bottom: 2rem;">
-            <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #1a1a2e;" loading="lazy" decoding="async">
-            <h2 style="color: #333; margin-bottom: 1rem; font-size: 2rem;">M. Alwi Shihab</h2>
-            <p style="color: #666; font-size: 1.1rem; line-height: 1.6; text-align: left;">Experiences in Mobile Development and passionate about creating user-centric public service applications. Excellent skill in designing and delivering Secure and Scalable solutions, with a strong focus on enhancing user safety and privacy in mobile applications.</p>
-          </div>
-          <div class="skills-grid">
-            <div class="skill-item">
-              <i class="fa fa-apple" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>iOS<br>Development</h4>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-android" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>Android Development</h4>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-globe" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>Web Development</h4>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-shield" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>Security Awareness</h4>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-desktop" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>Desktop Development</h4>
-            </div>
-          </div>
-        </div>
         
-        <!-- Projects Content -->
-        <div class="content-area" id="projects-content">
-          <div class="content-header">
-            <h1>Portfolio</h1>
-            <p>Mobile applications and web solutions I've developed</p>
-          </div>
-          
-          <!-- Platform Filter Buttons -->
-          <div style="display: flex; justify-content: center; gap: 1rem; margin: 2rem 0;">
-            <button class="platform-btn active" data-platform="ios" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #333; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease;">
-              <i class="fa fa-apple"></i>
-            </button>
-            <button class="platform-btn" data-platform="android" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #e9ecef; color: #333; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease;">
-              <i class="fa fa-android"></i>
-            </button>
-            <button class="platform-btn" data-platform="desktop" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #e9ecef; color: #333; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease;">
-              <i class="fa fa-laptop"></i>
-            </button>
-          </div>
-          
-          <!-- iOS Projects -->
-          <div class="project-grid" id="ios-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem;">
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-other.png" alt="JAKI Other Features" loading="lazy" decoding="async">
-              <h3>JAKI Other Features</h3>
-              <p>Various other features in JAKI iOS App including multi language localization 2023-2025</p>
+        <!-- Xcode Interface -->
+        <div class="xcode-interface">
+          <!-- Left Sidebar - Project Navigator -->
+          <div class="xcode-sidebar">
+            <div class="xcode-sidebar-header">
+              <i class="fa fa-folder"></i>
+              <span>wishihab</span>
             </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-apple" style="font-size: 4rem; color: #1a1a2e;"></i>
+            <div class="xcode-project-tree">
+              <!-- Project Structure -->
+              <div class="xcode-folder-item expanded">
+                <div class="xcode-folder-name">wishihab</div>
+                <div class="xcode-folder-children">
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">wishihabdev</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">wishihab</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">GoogleService</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Utils</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Cores</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Moduls</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📄</div>
+                    <div class="xcode-folder-name">AppDelegate</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📄</div>
+                    <div class="xcode-folder-name">SceneDelegate</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Assets</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📄</div>
+                    <div class="xcode-folder-name">Info-dev</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📄</div>
+                    <div class="xcode-folder-name">Info</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📄</div>
+                    <div class="xcode-folder-name">InfoPlist</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">OneSignalNotificationServiceExtensionDev</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Products</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Pods</div>
+                  </div>
+                  <div class="xcode-folder-item">
+                    <div class="xcode-folder-icon">📁</div>
+                    <div class="xcode-folder-name">Frameworks</div>
+                  </div>
+                </div>
               </div>
-              <h3>SMS OTP</h3>
-              <p>two authentication profile using SMS OTP 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-apple" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>JakCare</h3>
-              <p>Mental Health Online Consultation 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
-              <h3>JAKI Pulau</h3>
-              <p>Island Information feature in JAKI iOS App 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
-              <h3>JAKI Report</h3>
-              <p>Report feature in JAKI iOS App 2024</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
-              <h3>JAKI Wrapped</h3>
-              <p>Year End Report feature in JAKI iOS App 2024</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
-              <h3>JAKI PIN</h3>
-              <p>Security PIN feature in JAKI iOS App 2024</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
-              <h3>JAKI Air Quality</h3>
-              <p>Air Quality feature in JAKI iOS App 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
-              <h3>JAKI Akun Warga</h3>
-              <p>Citizen Account feature in JAKI iOS App 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-apple" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>Maintenance JAKI</h3>
-              <p>JakPangan, JakWifi and JakPeta 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193723738-81a8df48-bea2-4666-b1fb-1e11c88668a0.mp4', '_blank')" style="cursor: pointer;">
-              <img src="images/appstore.jpg" alt="Movie Clone" loading="lazy" decoding="async">
-              <h3>Movie Clone</h3>
-              <p>Movie clone specific actress Jennifer Connelly 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193719354-0f334add-eaf8-4338-912f-7206db90a7fb.mp4', '_blank')" style="cursor: pointer;">
-              <img src="images/appstore.jpg" alt="My Contact API" loading="lazy" decoding="async">
-              <h3>My Contact API</h3>
-              <p>Contact list based on randomuser 2022</p>
+              
             </div>
           </div>
           
-          <!-- Android Projects -->
-          <div class="project-grid" id="android-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem; display: none;">
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki.PNG" alt="Jakarta Kini (JAKI)" loading="lazy" decoding="async">
-              <h3>Jakarta Kini (JAKI)</h3>
-              <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA 2022</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki_jakagd.PNG" alt="JAKAGD" loading="lazy" decoding="async">
-              <h3>JAKAGD</h3>
-              <p>AMBULAN GAWAT DARURAT - JAKARTA KINI 2022</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
+          <!-- Right Side - Code Editor -->
+          <div class="xcode-editor">
+            <!-- Editor Tabs -->
+            <div class="xcode-editor-tabs">
+              <div class="xcode-tab active">
+                <span>MainView.swift</span>
+                <div class="xcode-tab-close">×</div>
               </div>
-              <h3>Bantuan Sosial JAKI</h3>
-              <p>Kartu Jakarta Pintar (KJP), Kartu Jakarta Mahasiswa Unggul (KJMU), Kartu Anak Jakarta (KAJ), Kartu Lansia Jakarta (KLJ) and Kartu Penyandang Disabilitas Jakarta (KPDJ) 2022</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
+              <div class="xcode-tab">
+                <span>AboutView.swift</span>
+                <div class="xcode-tab-close">×</div>
               </div>
-              <h3>WeFlix</h3>
-              <p>Netflix Clone 2022</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-verifikasinik.PNG" alt="VERIFY ID" loading="lazy" decoding="async">
-              <h3>VERIFY ID</h3>
-              <p>VERIFIKASI NIK - JAKARTA KINI 2021</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
-              <h3>PPDB SD TLIVE</h3>
-              <p>PENERIMAAN PESERTA DIDIK BARU 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
+              <div class="xcode-tab">
+                <span>SimulatorView.swift</span>
+                <div class="xcode-tab-close">×</div>
               </div>
-              <h3>e-Rapor TLIVE</h3>
-              <p>e-Rapor online Sekolah Menengah Pertama Kota Tangerang2020</p>
             </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
-              <h3>TANGERANG LIVE V6</h3>
-              <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6 2020</p>
+            
+            <!-- Code Editor -->
+            <div class="xcode-code-editor">
+              <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">//  MainView.swift</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">//  wishihab</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">//  Created by Alwi Shihab on 01/01/23.</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
             </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
-              <h3>LAKSA TLIVE</h3>
-              <p>Layanan Aspirasi Kotak Saran Anda 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
-              <h3>LOWONGAN KERJA TLIVE</h3>
-              <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
-              <h3>CUACA TLIVE</h3>
-              <p>KUALITAS UDARA DAN CUACA TLIVE V6 2019</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer;">
-              <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID" loading="lazy" decoding="async">
-              <h3>WEDEFEND ANDROID</h3>
-              <p>MONITOR AND PROTECT ANDROID FROM REMOTE ACCESS TOOL TROJAN 2018</p>
-            </div>
-          </div>
-          
-          <!-- Desktop Projects -->
-          <div class="project-grid" id="desktop-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem; display: none;">
-            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+            
+            <!-- Bottom Status Bar -->
+            <div class="xcode-bottom-bar">
+              <div class="xcode-status">
+                <div class="xcode-status-item">
+                  <div class="xcode-status-icon"></div>
+                  <span>Build Succeeded</span>
+                </div>
+                <div class="xcode-status-item">
+                  <div class="xcode-status-icon warning"></div>
+                  <span>2</span>
+                </div>
+                <div class="xcode-status-item">
+                  <span>148</span>
+                </div>
+                <div class="xcode-status-item">
+                  <span>Line: 25 Col: 32</span>
+                </div>
               </div>
-              <h3>SATUDATA</h3>
-              <p>Sistem Data Terpusat 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>SPPD</h3>
-              <p>e-Surat Perintah Perjalanan Dinas 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>SIMAPAN</h3>
-              <p>Sistem Informasi Pemakaman dan Pertanahan 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>eSPPD</h3>
-              <p>e-Surat Perintah Perjalanan Dinas 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>eSPPD Inspektorat</h3>
-              <p>Surat Perintah Perjalanan Dinas Inspektorat 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>PoS Laatansa Agung</h3>
-              <p>Point of Sales system printing 2022</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://github.com/wishihab/WeDefend', '_blank')" style="cursor: pointer;">
-              <img src="images/wedefend_desktop.png" alt="WEDEFEND DESKTOP" loading="lazy" decoding="async">
-              <h3>WEDEFEND DESKTOP</h3>
-              <p>Monitor and Protect Windows from Remote Access Trojan 2018</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://paten.tangerangkota.go.id/', '_blank')" style="cursor: pointer;">
-              <img src="images/paten.png" alt="PATEN KOTA TANGERANG" loading="lazy" decoding="async">
-              <h3>PATEN KOTA TANGERANG</h3>
-              <p>PELAYANAN ADMINISTRASI TERPADU KECAMATAN 2018</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Experience Content -->
-        <div class="content-area" id="experience-content">
-          <div class="content-header">
-            <h1>Work Experience</h1>
-            <p>My professional journey in mobile development</p>
-          </div>
-          <div style="height: calc(100vh - 120px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem;">
-          <div class="experience-item">
-            <h3>iOS Developer</h3>
-            <div class="company">Jakarta Smart City</div>
-            <div class="period">Jan 2023 - Present</div>
-            <p>Public Service iOS Development - Developing and maintaining Jakarta's smart city mobile applications.</p>
-          </div>
-          <div class="experience-item">
-            <h3>Android Developer</h3>
-            <div class="company">Jakarta Smart City</div>
-            <div class="period">Feb 2021 - Dec 2022</div>
-            <p>Public Service Android Development - Created and maintained citizen service applications for Jakarta.</p>
-          </div>
-          <div class="experience-item">
-            <h3>Back End Developer</h3>
-            <div class="company">PT Aviasi Jaya Indonesia</div>
-            <div class="period">Oct 2020 - Jan 2021</div>
-            <p>Internal Web Development - Developed backend systems for aviation company's internal operations.</p>
-          </div>
-          <div class="experience-item">
-            <h3>Android Developer</h3>
-            <div class="company">Dinas Komunikasi dan Informatika</div>
-            <div class="period">August 2019 - July 2020</div>
-            <p>Public Service Android Development - Developed mobile applications for government services.</p>
-          </div>
-          <div class="experience-item">
-            <h3>Web Developer</h3>
-            <div class="company">Dinas Komunikasi dan Informatika</div>
-            <div class="period">October 2018 - December 2018</div>
-            <p>Internal Web Development - Developed web applications for government services.</p>
-          </div>
-          <div class="experience-item">
-            <h3>Student Internship</h3>
-            <div class="company">Neusoft Nanjing</div>
-            <div class="period">April 2018 - May 2018</div>
-            <p>Project Training, Back End Programmer - Gained experience in backend development and project management.</p>
-          </div>
-          <div class="experience-item">
-            <h3>Computer Lab Assistant</h3>
-            <div class="company">Esa Unggul University</div>
-            <div class="period">April 2016 - September 2016</div>
-            <p>Practice - Basic of Algorithm, Data Structure and Databases - Assisted students with programming fundamentals.</p>
-          </div>
-          </div>
-        </div>
-        
-        <!-- Skills Content -->
-        <div class="content-area" id="skills-content">
-          <div class="content-header">
-            <h1>Technical Skills</h1>
-            <p>Technologies and frameworks I work with</p>
-          </div>
-          <div class="skills-grid">
-            <div class="skill-item">
-              <i class="fa fa-mobile"></i>
-              <h4>Mobile Development</h4>
-              <p>iOS (Swift, UIKit, SwiftUI)<br>Android (Java, Kotlin, XML)</p>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-code"></i>
-              <h4>Programming Languages</h4>
-              <p>Swift, Java, Kotlin, <br>Python, PHP</p>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-database"></i>
-              <h4>Backend Technologies</h4>
-              <p>Laravel, CodeIgniter,<br>MySQL, PostgreSQL</p>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-shield"></i>
-              <h4>Security Awareness</h4>
-              <p>Mobile Security,<br>OWASP Guidelines</p>
-            </div>
-            <div class="skill-item">
-              <i class="fa fa-cogs"></i>
-              <h4>DevOps</h4>
-              <p>Ubuntu, Nginx, Apache,<br> SSH, Fastlane, CI/CD</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Contact Content -->
-        <div class="content-area" id="contact-content">
-          <div class="content-header">
-            <h1>Get In Touch</h1>
-            <p>Let's connect and discuss opportunities</p>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-            <div class="skill-item" onclick="window.open('https://www.linkedin.com/in/wishihab/', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-linkedin" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>LinkedIn</h4>
-              <p>linkedin.com/in/wishihab</p>
-            </div>
-            <div class="skill-item" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-github" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>GitHub</h4>
-              <p>github.com/wishihab</p>
-            </div>
-            <div class="skill-item" onclick="window.open('https://twitter.com/wishihab', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-twitter" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>Twitter</h4>
-              <p>@wishihab</p>
-            </div>
-            <div class="skill-item" onclick="window.open('https://instagram.com/wishihab', '_blank')" style="cursor: pointer;">
-              <i class="fa fa-instagram" style="color: #1a1a2e; font-size: 2.5rem;"></i>
-              <h4>Instagram</h4>
-              <p>@wishihab</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Resume Content -->
-        <div class="content-area" id="resume-content">
-          <div class="content-header">
-            <h1>Resume</h1>
-            <p>Download my complete resume</p>
-          </div>
-          <div style="text-align: center; margin-top: 3rem;">
-            <div class="skill-item" style="max-width: 400px; margin: 0 auto;">
-              <i class="fa fa-download" style="font-size: 3rem;"></i>
-              <h4>Download Resume</h4>
-              <p>Get my complete professional profile</p>
-              <button style="background: #6c757d; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: not-allowed; font-size: 16px; margin-top: 1rem;" disabled>Unavailable</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- JAKI iOS Content -->
-        <div class="content-area" id="jaki-ios-content">
-          <div class="content-header">
-            <h1>JAKI iOS App</h1>
-            <p>Jakarta Smart City iOS Application</p>
-          </div>
-          <div class="project-grid" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
-            <div class="project-card">
-              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
-              <h3>JAKI Report</h3>
-              <p>Report feature in JAKI iOS App - Jakarta's smart city application for citizen services and reporting.</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
-              <h3>JAKI Air Quality</h3>
-              <p>Air Quality monitoring feature in JAKI iOS App with real-time data and health recommendations.</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
-              <h3>JAKI Wrapped</h3>
-              <p>Year End Report feature in JAKI iOS App</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
-              <h3>JAKI PIN</h3>
-              <p>Security PIN feature in JAKI iOS App</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
-              <h3>JAKI Akun Warga</h3>
-              <p>Citizen Account feature in JAKI iOS App</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
-              <h3>JAKI Pulau</h3>
-              <p>Island Information feature in JAKI iOS App</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- JAKI Android Content -->
-        <div class="content-area" id="jaki-android-content">
-          <div class="content-header">
-            <h1>JAKI Android App</h1>
-            <p>Jakarta Smart City Android Application</p>
-          </div>
-          <div class="project-grid" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
-            <div class="project-card">
-              <img src="images/jaki.PNG" alt="Jakarta Kini" loading="lazy" decoding="async">
-              <h3>Jakarta Kini (JAKI)</h3>
-              <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki_jakagd.PNG" alt="JAKAGD" loading="lazy" decoding="async">
-              <h3>JAKAGD</h3>
-              <p>AMBULAN GAWAT DARURAT - JAKARTA KINI</p>
-            </div>
-            <div class="project-card">
-              <img src="images/jaki-verifikasinik.PNG" alt="Verify ID" loading="lazy" decoding="async">
-              <h3>VERIFY ID</h3>
-              <p>VERIFIKASI NIK - JAKARTA KINI</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- TLIVE Content -->
-        <div class="content-area" id="tlive-content">
-          <div class="content-header">
-            <h1>TLIVE Android App</h1>
-            <p>Tangerang Live Android Application</p>
-          </div>
-          <div class="project-grid" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
-            <div class="project-card">
-              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
-              <h3>PPDB SD TLIVE</h3>
-              <p>PENERIMAAN PESERTA DIDIK BARU</p>
-            </div>
-            <div class="project-card">
-              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
-              <h3>CUACA TLIVE</h3>
-              <p>KUALITAS UDARA DAN CUACA TLIVE V6</p>
-            </div>
-            <div class="project-card">
-              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
-              <h3>TANGERANG LIVE V6</h3>
-              <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6</p>
-            </div>
-            <div class="project-card">
-              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
-              <h3>LAKSA TLIVE</h3>
-              <p>Layanan Aspirasi Kotak Saran Anda</p>
-            </div>
-            <div class="project-card">
-              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
-              <h3>LOWONGAN KERJA TLIVE</h3>
-              <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- Critical JavaScript - load immediately -->
+    <script src="js/core/jquery.3.2.1.min.js"></script>
+    
+    <!-- Defer non-critical JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Xcode interface
+        console.log('Xcode interface loaded');
+        
+        // Add click handlers for folder items
+        document.querySelectorAll('.xcode-folder-item').forEach(item => {
+          item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('expanded');
+          });
+        });
+        
+        // Add tab switching functionality
+        document.querySelectorAll('.xcode-tab').forEach(tab => {
+          tab.addEventListener('click', function() {
+            document.querySelectorAll('.xcode-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update code content based on active tab
+            const codeEditor = document.querySelector('.xcode-code-editor');
+            const tabText = this.querySelector('span').textContent;
+            
+            if (tabText === 'MainView.swift') {
+              codeEditor.innerHTML = `
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  MainView.swift</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  wishihab</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  Created by Alwi Shihab on 01/01/23.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+              `;
+            } else if (tabText === 'AboutView.swift') {
+              codeEditor.innerHTML = `
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  AboutView.swift</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  wishihab</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  Created by Alwi Shihab on 01/01/23.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+              `;
+            } else if (tabText === 'SimulatorView.swift') {
+              codeEditor.innerHTML = `
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  SimulatorView.swift</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  wishihab</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//  Created by Alwi Shihab on 01/01/23.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">//</span></div>
+              `;
+            }
+          });
+        });
+        
+        // Add Safari popup functionality
+        document.querySelectorAll('.app-icon, .dock-icon').forEach(icon => {
+          icon.addEventListener('click', function() {
+            const content = this.getAttribute('data-content');
+            if (content) {
+              showSafariPopup(content + '-popup');
+            }
+          });
+        });
+
+        // Close popup when clicking overlay
+        document.getElementById('safari-overlay').addEventListener('click', function() {
+          closeAllSafariPopups();
+        });
+
+        // Close popup when clicking close button
+        document.querySelectorAll('.safari-button.close').forEach(button => {
+          button.addEventListener('click', function() {
+            closeAllSafariPopups();
+          });
+        });
+      });
+      
+      // Safari popup functions
+      function showSafariPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        const overlay = document.getElementById('safari-overlay');
+        
+        if (popup) {
+          overlay.classList.add('active');
+          popup.classList.add('active');
+        }
+      }
+      
+      function closeSafariPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        const overlay = document.getElementById('safari-overlay');
+        
+        if (popup) {
+          popup.classList.remove('active');
+          overlay.classList.remove('active');
+        }
+      }
+      
+      function closeAllSafariPopups() {
+        document.querySelectorAll('.safari-popup').forEach(popup => {
+          popup.classList.remove('active');
+        });
+        document.getElementById('safari-overlay').classList.remove('active');
+        
+        // On mobile, ensure we stay in phone view after closing popups
+        if (window.innerWidth <= 768) {
+          const contentSection = document.querySelector('.content-section');
+          if (contentSection) {
+            contentSection.classList.remove('active');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
+              
+        
+        <!-- Projects Content - MOVED TO SAFARI POPUP -->
+          
+        
+        <!-- Experience Content - MOVED TO SAFARI POPUP -->
+        
+        <!-- Skills Content - MOVED TO SAFARI POPUP -->
+        
+        <!-- Contact Content - MOVED TO SAFARI POPUP -->
+        
+        <!-- Resume Content - MOVED TO SAFARI POPUP -->
+        
+        <!-- JAKI iOS, JAKI Android, and TLIVE Content - MOVED TO SAFARI PROJECT POPUP -->
+      
     <!-- Critical JavaScript - load immediately -->
     <script src="js/core/jquery.3.2.1.min.js"></script>
     
@@ -1426,7 +1793,7 @@
         const platformBtns = document.querySelectorAll('.platform-btn');
         const iosProjects = document.getElementById('ios-projects');
         const androidProjects = document.getElementById('android-projects');
-        const desktopProjects = document.getElementById('desktop-projects');
+        const webProjects = document.getElementById('web-projects');
         
         platformBtns.forEach(btn => {
           btn.addEventListener('click', function() {
@@ -1447,15 +1814,15 @@
             // Hide all project sections
             iosProjects.style.display = 'none';
             androidProjects.style.display = 'none';
-            desktopProjects.style.display = 'none';
+            webProjects.style.display = 'none';
             
             // Show selected platform projects
             if (platform === 'ios') {
               iosProjects.style.display = 'grid';
             } else if (platform === 'android') {
               androidProjects.style.display = 'grid';
-            } else if (platform === 'desktop') {
-              desktopProjects.style.display = 'grid';
+            } else if (platform === 'web') {
+              webProjects.style.display = 'grid';
             }
           });
         });
@@ -1474,5 +1841,469 @@
         
       });
     </script>
+
+    <!-- Safari Overlay -->
+    <div id="safari-overlay" class="safari-overlay"></div>
+
+    <!-- Safari Popups -->
+    <div id="about-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">About - Alwi Shihab</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="about-content">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="https://avatars1.githubusercontent.com/u/23327081" alt="Profile" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #1a1a2e;" loading="lazy" decoding="async">
+            <h2 style="color: #fff; margin-bottom: 1rem; font-size: 2rem;">M. Alwi Shihab</h2>
+            <p style="color: #ebebeb; font-size: 1.1rem; line-height: 1.6; text-align: left;">Experiences in Mobile Development and passionate about creating user-centric public service applications. Excellent skill in designing and delivering Secure and Scalable solutions, with a strong focus on enhancing user safety and privacy in mobile applications.</p>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <i class="fa fa-apple" style="color: #fff; font-size: 2.5rem;"></i>
+              <h4>iOS<br>Development</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-android" style="color: #fff; font-size: 2.5rem;"></i>
+              <h4>Android Development</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-globe" style="color: #fff; font-size: 2.5rem;"></i>
+              <h4>Web Development</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-shield" style="color: #fff; font-size: 2.5rem;"></i>
+              <h4>Security Awareness</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-desktop" style="color: #fff; font-size: 2.5rem;"></i>
+              <h4>Desktop Development</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="projects-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">Projects - Portfolio</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="projects-content">
+          <div class="content-header">
+            <h1>Portfolio</h1>
+            <p>Mobile applications and web solutions I've developed</p>
+          </div>
+          
+          <!-- Platform Filter Buttons -->
+          <div style="display: flex; justify-content: center; gap: 1rem; margin: 2rem 0;">
+            <button class="platform-btn active" data-platform="ios" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #333; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease;">
+              <i class="fa fa-apple"></i>
+            </button>
+            <button class="platform-btn" data-platform="android" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #e9ecef; color: #333; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease;">
+              <i class="fa fa-android"></i>
+            </button>
+            <button class="platform-btn" data-platform="web" style="width: 60px; height: 60px; border-radius: 50%; border: none; background: #e9ecef; color: #333; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease;">
+              <i class="fa fa-globe"></i>
+            </button>
+          </div>
+          
+          <!-- iOS Projects -->
+          <div class="project-grid" id="ios-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem;">
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-other.png" alt="JAKI Other Features" loading="lazy" decoding="async">
+              <h3>JAKI Other Features</h3>
+              <p>Various other features in JAKI iOS App including multi language localization 2023-2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-apple" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>SMS OTP</h3>
+              <p>two authentication profile using SMS OTP 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-apple" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>JakCare</h3>
+              <p>Mental Health Online Consultation 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
+              <h3>JAKI Pulau</h3>
+              <p>Island Information feature in JAKI iOS App 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
+              <h3>JAKI Report</h3>
+              <p>Report feature in JAKI iOS App 2024</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
+              <h3>JAKI Wrapped</h3>
+              <p>Year End Report feature in JAKI iOS App 2024</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
+              <h3>JAKI PIN</h3>
+              <p>Security PIN feature in JAKI iOS App 2024</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
+              <h3>JAKI Air Quality</h3>
+              <p>Air Quality feature in JAKI iOS App 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
+              <h3>JAKI Akun Warga</h3>
+              <p>Citizen Account feature in JAKI iOS App 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-apple" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>Maintenance JAKI</h3>
+              <p>JakPangan, JakWifi and JakPeta 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193723738-81a8df48-bea2-4666-b1fb-1e11c88668a0.mp4', '_blank')" style="cursor: pointer;">
+              <img src="images/appstore.jpg" alt="Movie Clone" loading="lazy" decoding="async">
+              <h3>Movie Clone</h3>
+              <p>Movie clone specific actress Jennifer Connelly 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://user-images.githubusercontent.com/23327081/193719354-0f334add-eaf8-4338-912f-7206db90a7fb.mp4', '_blank')" style="cursor: pointer;">
+              <img src="images/appstore.jpg" alt="My Contact API" loading="lazy" decoding="async">
+              <h3>My Contact API</h3>
+              <p>Contact list based on randomuser 2022</p>
+            </div>
+          </div>
+          
+          <!-- Android Projects -->
+          <div class="project-grid" id="android-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem; display: none;">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki.PNG" alt="Jakarta Kini" loading="lazy" decoding="async">
+              <h3>Jakarta Kini (JAKI)</h3>
+              <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA 2022</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki_jakagd.PNG" alt="JAKAGD" loading="lazy" decoding="async">
+              <h3>JAKAGD</h3>
+              <p>AMBULAN GAWAT DARURAT - JAKARTA KINI 2022</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>Bantuan Sosial JAKI</h3>
+              <p>Kartu Jakarta Pintar (KJP), Kartu Jakarta Mahasiswa Unggul (KJMU), Kartu Anak Jakarta (KAJ), Kartu Lansia Jakarta (KLJ) and Kartu Penyandang Disabilitas Jakarta (KPDJ) 2022</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>WeFlix</h3>
+              <p>Netflix Clone 2022</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-verifikasinik.PNG" alt="Verify ID" loading="lazy" decoding="async">
+              <h3>VERIFY ID</h3>
+              <p>VERIFIKASI NIK - JAKARTA KINI 2021</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
+              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
+              <h3>PPDB SD TLIVE</h3>
+              <p>PENERIMAAN PESERTA DIDIK BARU 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>e-Rapor TLIVE</h3>
+              <p>e-Rapor online Sekolah Menengah Pertama Kota Tangerang2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
+              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
+              <h3>TANGERANG LIVE V6</h3>
+              <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
+              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
+              <h3>LAKSA TLIVE</h3>
+              <p>Layanan Aspirasi Kotak Saran Anda 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
+              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
+              <h3>LOWONGAN KERJA TLIVE</h3>
+              <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
+              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
+              <h3>CUACA TLIVE</h3>
+              <p>KUALITAS UDARA DAN CUACA TLIVE V6 2019</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer;">
+              <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID" loading="lazy" decoding="async">
+              <h3>WEDEFEND ANDROID</h3>
+              <p>MONITOR AND PROTECT ANDROID FROM REMOTE ACCESS TOOL TROJAN 2018</p>
+            </div>
+          </div>
+          
+          <!-- Web Projects -->
+          <div class="project-grid" id="web-projects" style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem; display: none;">
+            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>SATUDATA</h3>
+              <p>Sistem Data Terpusat 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>SPPD</h3>
+              <p>e-Surat Perintah Perjalanan Dinas 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>SIMAPAN</h3>
+              <p>Sistem Informasi Pemakaman dan Pertanahan 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>eSPPD</h3>
+              <p>e-Surat Perintah Perjalanan Dinas 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>eSPPD Inspektorat</h3>
+              <p>Surat Perintah Perjalanan Dinas Inspektorat 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('http://scbproject.my.id/', '_blank')" style="cursor: pointer;">
+              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
+                <i class="fa fa-globe" style="font-size: 4rem; color: #1a1a2e;"></i>
+              </div>
+              <h3>PoS Laatansa Agung</h3>
+              <p>Point of Sales system printing 2022</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/WeDefend', '_blank')" style="cursor: pointer;">
+              <img src="images/wedefend_desktop.png" alt="WEDEFEND DESKTOP" loading="lazy" decoding="async">
+              <h3>WEDEFEND DESKTOP</h3>
+              <p>Monitor and Protect Windows from Remote Access Trojan 2018</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://paten.tangerangkota.go.id/', '_blank')" style="cursor: pointer;">
+              <img src="images/paten.png" alt="PATEN KOTA TANGERANG" loading="lazy" decoding="async">
+              <h3>PATEN KOTA TANGERANG</h3>
+              <p>PELAYANAN ADMINISTRASI TERPADU KECAMATAN 2018</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="experience-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">Experience - Career</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="experience-content">
+          <div class="content-header">
+            <h1>Work Experience</h1>
+            <p>My professional journey in mobile development</p>
+          </div>
+          <div style="height: calc(100vh - 200px); overflow-y: auto; padding-right: 10px; padding-bottom: 1rem;">
+            <div class="experience-item">
+              <h3>iOS Developer</h3>
+              <div class="company"><a href="https://smartcity.jakarta.go.id/" target="_blank" style="color: #007AFF; text-decoration: none;">Jakarta Smart City</a></div>
+              <div class="period">Jan 2023 - Present</div>
+              <p>Public Service iOS Development - Developing and maintaining Jakarta's smart city mobile applications.</p>
+            </div>
+            <div class="experience-item">
+              <h3>Android Developer</h3>
+              <div class="company"><a href="https://smartcity.jakarta.go.id/" target="_blank" style="color: #007AFF; text-decoration: none;">Jakarta Smart City</a></div>
+              <div class="period">Feb 2021 - Dec 2022</div>
+              <p>Public Service Android Development - Created and maintained citizen service applications for Jakarta.</p>
+            </div>
+            <div class="experience-item">
+              <h3>Back End Developer</h3>
+              <div class="company"><a href="http://avter.co.id/" target="_blank" style="color: #007AFF; text-decoration: none;">PT Aviasi Jaya Indonesia</a></div>
+              <div class="period">Oct 2020 - Jan 2021</div>
+              <p>Internal Web Development - Developed backend systems for aviation company's internal operations.</p>
+            </div>
+            <div class="experience-item">
+              <h3>Android Developer</h3>
+              <div class="company"><a href="https://diskominfo.tangerangkota.go.id/" target="_blank" style="color: #007AFF; text-decoration: none;">Dinas Komunikasi dan Informatika</a></div>
+              <div class="period">August 2019 - July 2020</div>
+              <p>Public Service Android Development - Developed mobile applications for government services.</p>
+            </div>
+            <div class="experience-item">
+              <h3>Web Developer</h3>
+              <div class="company"><a href="https://diskominfo.tangerangkota.go.id/" target="_blank" style="color: #007AFF; text-decoration: none;">Dinas Komunikasi dan Informatika</a></div>
+              <div class="period">October 2018 - December 2018</div>
+              <p>Internal Web Development - Developed web applications for government services.</p>
+            </div>
+            <div class="experience-item">
+              <h3>Student Internship</h3>
+              <div class="company"><a href="https://www.neusoft.com/" target="_blank" style="color: #007AFF; text-decoration: none;">Neusoft Nanjing</a></div>
+              <div class="period">April 2018 - May 2018</div>
+              <p>Project Training, Back End Programmer - Gained experience in backend development and project management.</p>
+            </div>
+            <div class="experience-item">
+              <h3>Computer Lab Assistant</h3>
+              <div class="company"><a href="https://www.esaunggul.ac.id/" target="_blank" style="color: #007AFF; text-decoration: none;">Esa Unggul University</a></div>
+              <div class="period">April 2016 - September 2016</div>
+              <p>Practice - Basic of Algorithm, Data Structure and Databases - Assisted students with programming fundamentals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="skills-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">Skills - Technical</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="skills-content">
+          <div class="content-header">
+            <h1>Technical Skills</h1>
+            <p>Technologies and frameworks I work with</p>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <i class="fa fa-mobile"></i>
+              <h4>Mobile Development</h4>
+              <p>iOS (Swift, UIKit, SwiftUI)<br>Android (Java, Kotlin, XML)</p>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-code"></i>
+              <h4>Programming Languages</h4>
+              <p>Swift, Java, Kotlin, <br>Python, PHP</p>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-database"></i>
+              <h4>Backend Technologies</h4>
+              <p>Laravel, CodeIgniter,<br>MySQL, PostgreSQL</p>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-shield"></i>
+              <h4>Security Awareness</h4>
+              <p>Mobile Security,<br>OWASP Guidelines</p>
+            </div>
+            <div class="skill-item">
+              <i class="fa fa-cogs"></i>
+              <h4>DevOps</h4>
+              <p>Ubuntu, Nginx, Apache,<br> SSH, Fastlane, CI/CD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="resume-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">Resume - Download</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="resume-content">
+          <div class="content-header">
+            <h1>Resume</h1>
+            <p>Download my complete resume</p>
+          </div>
+          <div style="text-align: center; margin-top: 3rem;">
+            <div class="skill-item" style="max-width: 400px; margin: 0 auto;">
+              <i class="fa fa-download" style="font-size: 3rem;"></i>
+              <h4>Download Resume</h4>
+              <p>Get my complete professional profile</p>
+              <button style="background: #6c757d; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: not-allowed; font-size: 16px; margin-top: 1rem;" disabled>Unavailable</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">Contact - Get in Touch</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="contact-content">
+          <div class="content-header">
+            <h1>Get In Touch</h1>
+            <p>Let's connect and discuss opportunities</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div class="skill-item" onclick="window.open('https://www.linkedin.com/in/wishihab/', '_blank')" style="cursor: pointer;">
+              <i class="fa fa-linkedin" style="color: #ebebeb; font-size: 2.5rem;"></i>
+              <h4>LinkedIn</h4>
+              <p>linkedin.com/in/wishihab</p>
+            </div>
+            <div class="skill-item" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer;">
+              <i class="fa fa-github" style="color: #ebebeb; font-size: 2.5rem;"></i>
+              <h4>GitHub</h4>
+              <p>github.com/wishihab</p>
+            </div>
+            <div class="skill-item" onclick="window.open('https://twitter.com/wishihab', '_blank')" style="cursor: pointer;">
+              <i class="fa fa-twitter" style="color: #ebebeb; font-size: 2.5rem;"></i>
+              <h4>Twitter</h4>
+              <p>@wishihab</p>
+            </div>
+            <div class="skill-item" onclick="window.open('https://instagram.com/wishihab', '_blank')" style="cursor: pointer;">
+              <i class="fa fa-instagram" style="color: #ebebeb; font-size: 2.5rem;"></i>
+              <h4>Instagram</h4>
+              <p>@wishihab</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

@@ -1647,10 +1647,82 @@
               <div class="xcode-code-line"></div>
               <div class="xcode-code-line"><span class="xcode-keyword">import</span> <span class="xcode-string">UIKit</span></div>
               <div class="xcode-code-line"><span class="xcode-keyword">import</span> <span class="xcode-string">SwiftUI</span></div>
-              <div class="xcode-code-line"></div><br>
+              <div class="xcode-code-line"></div>
+              <div class="xcode-code-line"><span class="xcode-comment">/*</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// MARK: Portfolio Context</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// You might be wondering why the portfolio website looks unusual.</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// This view is an illustration of how most software engineers work.</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// Most of them use an Integrated Development Environment (IDE) such</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// as Visual Studio Code, JetBrains, Xcode, Android Studio, or even</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// terminal-based tools like Neovim.</span></div>
+              <div class="xcode-code-line"></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// This specific display mimics how I work as an iOS Developer using the</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// Xcode IDE and the Simulator. This file serves as an example of how</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// a user interface is created using UIKit or SwiftUI.</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// I usually work using the tools that you can see in the bottom-left</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">// section of the Xcode IDE.</span></div>
+              <div class="xcode-code-line"><span class="xcode-comment">*/</span></div>
+              <div class="xcode-code-line"></div>
               <div class="xcode-code-line"><span class="xcode-keyword">class</span> <span class="xcode-type">MainView</span>: <span class="xcode-type">UIViewController</span> {</div>
-              <div class="xcode-code-line"> <span class="xcode-comment">//MARK: onprogress - working on it</span></div>
-              <div class="xcode-code-line"> <span class="xcode-comment">//MARK: Please focus on the simulator, you can click any icon menu on that phone<br>to know more about me</span></div>
+              
+              <div class="xcode-code-line">    <span class="xcode-comment">// MARK: You can use the simulator to know more about me</span></div>
+              
+              <div class="xcode-code-line"></div>
+              <div class="xcode-code-line">   <span class="xcode-keyword">let</span> <span class="xcode-variable">scrollView</span>: <span class="xcode-type">UIScrollView</span> = {</div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">let</span> <span class="xcode-variable">scrollView</span> = <span class="xcode-type">UIScrollView</span>()</div>
+              <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">backgroundColor</span> = <span class="xcode-type">UIColor</span>.<span class="xcode-variable">appColor</span>(.<span class="xcode-variable">white</span>)</div>
+              <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentInsetAdjustmentBehavior</span> = .<span class="xcode-variable">never</span></div>
+              <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">showsVerticalScrollIndicator</span> = <span class="xcode-keyword">false</span></div>
+              <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">alwaysBounceVertical</span> = <span class="xcode-keyword">true</span></div>
+              <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">translatesAutoresizingMaskIntoConstraints</span> = <span class="xcode-keyword">false</span></div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">return</span> <span class="xcode-variable">scrollView</span></div>
+              <div class="xcode-code-line">    }()</div>
+              <br>
+              <div class="xcode-code-line"></div>
+              <div class="xcode-code-line">    <span class="xcode-keyword">let</span> <span class="xcode-variable">scrollViewContainer</span>: <span class="xcode-type">UIStackView</span> = {</div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">let</span> <span class="xcode-variable">view</span> = <span class="xcode-type">UIStackView</span>()</div>
+              <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">spacing</span> = <span class="xcode-number">8</span></div>
+              <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">axis</span> = .<span class="xcode-variable">vertical</span></div>
+              <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">backgroundColor</span> = <span class="xcode-type">UIColor</span>.<span class="xcode-variable">appColor</span>(.<span class="xcode-variable">white</span>)</div>
+              <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">translatesAutoresizingMaskIntoConstraints</span> = <span class="xcode-keyword">false</span></div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">return</span> <span class="xcode-variable">view</span></div>
+              <div class="xcode-code-line">    }()</div>
+              <br>
+              <div class="xcode-code-line"></div>
+              <div class="xcode-code-line">    <span class="xcode-keyword">override</span> <span class="xcode-keyword">func</span> <span class="xcode-function">viewDidLoad</span>() {</div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">super</span>.<span class="xcode-function">viewDidLoad</span>()</div>
+              <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">backgroundColor</span> = <span class="xcode-type">UIColor</span>.<span class="xcode-variable">appColor</span>(.<span class="xcode-variable">lightdarkblue</span>)</div>
+              <div class="xcode-code-line"></div>
+              <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-function">addSubview</span>(<span class="xcode-variable">scrollView</span>)</div>
+              <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-function">addSubview</span>(<span class="xcode-variable">scrollViewContainer</span>)</div>
+              <div class="xcode-code-line"></div>
+              <br>
+              <div class="xcode-code-line">        <span class="xcode-type">NSLayoutConstraint</span>.<span class="xcode-function">activate</span>([</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">topAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">topAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">leftAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">leftAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">rightAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">rightAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">bottomAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">bottomAnchor</span>),</div>
+              <div class="xcode-code-line">        ])</div>
+              <div class="xcode-code-line"></div>
+              <br>
+              <div class="xcode-code-line">        <span class="xcode-type">NSLayoutConstraint</span>.<span class="xcode-function">activate</span>([</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">topAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">topAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">leadingAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">leadingAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">trailingAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">trailingAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">bottomAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">bottomAnchor</span>),</div>
+              <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">widthAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">frameLayoutGuide</span>.<span class="xcode-variable">widthAnchor</span>),</div>
+              <div class="xcode-code-line">        ])</div>
+              <div class="xcode-code-line">    }</div>
+              <div class="xcode-code-line"></div>
+              <br>
+              <div class="xcode-code-line">    <span class="xcode-keyword">override</span> <span class="xcode-keyword">func</span> <span class="xcode-function">viewWillAppear</span>(<span class="xcode-variable">_</span> <span class="xcode-variable">animated</span>: <span class="xcode-type">Bool</span>) {</div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">super</span>.<span class="xcode-function">viewWillAppear</span>(<span class="xcode-variable">animated</span>)</div>
+              <div class="xcode-code-line">    }</div>
+              <div class="xcode-code-line"></div>
+              <br>
+              <div class="xcode-code-line">    <span class="xcode-keyword">override</span> <span class="xcode-keyword">func</span> <span class="xcode-function">viewWillDisappear</span>(<span class="xcode-variable">_</span> <span class="xcode-variable">animated</span>: <span class="xcode-type">Bool</span>) {</div>
+              <div class="xcode-code-line">        <span class="xcode-keyword">super</span>.<span class="xcode-function">viewWillDisappear</span>(<span class="xcode-variable">animated</span>)</div>
+              <div class="xcode-code-line">    }</div>
               <div class="xcode-code-line">}</div>
             </div>
             
@@ -1766,11 +1838,14 @@
         { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg', alt: 'Laravel' },
         { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', alt: 'MySQL' },
         { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', alt: 'PostgreSQL' },
+        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg', alt: 'Firebase' },
+        { name: 'OneSignal', icon: 'https://www.svgrepo.com/show/331518/onesignal.svg', alt: 'OneSignal' },
+        { name: 'Supabase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg', alt: 'Supabase' },
         { name: 'Ubuntu', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg', alt: 'Ubuntu' },
         { name: 'SSH', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original-wordmark.svg', alt: 'SSH' },
         { name: 'Nginx', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg', alt: 'Nginx' },
         { name: 'Apache', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg', alt: 'Apache' },
-        { name: 'Sourcetree', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sourcetree/sourcetree-original.svg', alt: 'Sourcetree' },
+        { name: 'Sourcetree', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sourcetree/sourcetree-original-wordmark.svg', alt: 'Sourcetree' },
         { name: 'Composer', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/composer/composer-original.svg', alt: 'Composer' },
         { name: 'Homebrew', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/homebrew/homebrew-original-wordmark.svg', alt: 'Homebrew' },
         { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', alt: 'GitHub' },
@@ -1872,10 +1947,82 @@
                 <div class="xcode-code-line"></div>
                 <div class="xcode-code-line"><span class="xcode-keyword">import</span> <span class="xcode-string">UIKit</span></div>
                 <div class="xcode-code-line"><span class="xcode-keyword">import</span> <span class="xcode-string">SwiftUI</span></div>
-                <div class="xcode-code-line"></div><br>
+                <div class="xcode-code-line"></div>
+                <div class="xcode-code-line"><span class="xcode-comment">/*</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// MARK: Portfolio Context</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// You might be wondering why the portfolio website looks unusual.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// This view is an illustration of how most software engineers work.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// Most of them use an Integrated Development Environment (IDE) such</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// as Visual Studio Code, JetBrains, Xcode, Android Studio, or even</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// terminal-based tools like Neovim.</span></div>
+                <div class="xcode-code-line"></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// This specific display mimics how I work as an iOS Developer using the</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// Xcode IDE and the Simulator. This file serves as an example of how</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// a user interface is created using UIKit or SwiftUI.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// I usually work using the tools that you can see in the bottom-left</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">// section of the Xcode IDE.</span></div>
+                <div class="xcode-code-line"><span class="xcode-comment">*/</span></div>
+                <div class="xcode-code-line"></div>
                 <div class="xcode-code-line"><span class="xcode-keyword">class</span> <span class="xcode-type">MainView</span>: <span class="xcode-type">UIViewController</span> {</div>
-                <div class="xcode-code-line"> <span class="xcode-comment">//MARK: onprogress - working on it</span></div>
-                <div class="xcode-code-line"> <span class="xcode-comment">//MARK: Please focus on the simulator, you can click any icon menu on that phone\nto know more about me</span></div>
+                
+                <div class="xcode-code-line">    <span class="xcode-comment">// MARK: You can use the simulator to know more about me</span></div>
+                
+                <div class="xcode-code-line"></div>
+                <div class="xcode-code-line">    <span class="xcode-keyword">let</span> <span class="xcode-variable">scrollView</span>: <span class="xcode-type">UIScrollView</span> = {</div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">let</span> <span class="xcode-variable">scrollView</span> = <span class="xcode-type">UIScrollView</span>()</div>
+                <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">backgroundColor</span> = <span class="xcode-type">UIColor</span>.<span class="xcode-variable">appColor</span>(.<span class="xcode-variable">white</span>)</div>
+                <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentInsetAdjustmentBehavior</span> = .<span class="xcode-variable">never</span></div>
+                <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">showsVerticalScrollIndicator</span> = <span class="xcode-keyword">false</span></div>
+                <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">alwaysBounceVertical</span> = <span class="xcode-keyword">true</span></div>
+                <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">translatesAutoresizingMaskIntoConstraints</span> = <span class="xcode-keyword">false</span></div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">return</span> <span class="xcode-variable">scrollView</span></div>
+                <div class="xcode-code-line">    }()</div>
+                <br>
+                <div class="xcode-code-line"></div>
+                <div class="xcode-code-line">    <span class="xcode-keyword">let</span> <span class="xcode-variable">scrollViewContainer</span>: <span class="xcode-type">UIStackView</span> = {</div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">let</span> <span class="xcode-variable">view</span> = <span class="xcode-type">UIStackView</span>()</div>
+                <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">spacing</span> = <span class="xcode-number">8</span></div>
+                <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">axis</span> = .<span class="xcode-variable">vertical</span></div>
+                <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">backgroundColor</span> = <span class="xcode-type">UIColor</span>.<span class="xcode-variable">appColor</span>(.<span class="xcode-variable">white</span>)</div>
+                <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">translatesAutoresizingMaskIntoConstraints</span> = <span class="xcode-keyword">false</span></div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">return</span> <span class="xcode-variable">view</span></div>
+                <div class="xcode-code-line">    }()</div>
+                <br>
+                <div class="xcode-code-line"></div>
+                <div class="xcode-code-line">    <span class="xcode-keyword">override</span> <span class="xcode-keyword">func</span> <span class="xcode-function">viewDidLoad</span>() {</div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">super</span>.<span class="xcode-function">viewDidLoad</span>()</div>
+                <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-variable">backgroundColor</span> = <span class="xcode-type">UIColor</span>.<span class="xcode-variable">appColor</span>(.<span class="xcode-variable">lightdarkblue</span>)</div>
+                <div class="xcode-code-line"></div>
+                <div class="xcode-code-line">        <span class="xcode-variable">view</span>.<span class="xcode-function">addSubview</span>(<span class="xcode-variable">scrollView</span>)</div>
+                <div class="xcode-code-line">        <span class="xcode-variable">scrollView</span>.<span class="xcode-function">addSubview</span>(<span class="xcode-variable">scrollViewContainer</span>)</div>
+                <div class="xcode-code-line"></div>
+                <br>
+                <div class="xcode-code-line">        <span class="xcode-type">NSLayoutConstraint</span>.<span class="xcode-function">activate</span>([</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">topAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">topAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">leftAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">leftAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">rightAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">rightAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">bottomAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">view</span>.<span class="xcode-variable">bottomAnchor</span>),</div>
+                <div class="xcode-code-line">        ])</div>
+                <div class="xcode-code-line"></div>
+                <br>
+                <div class="xcode-code-line">        <span class="xcode-type">NSLayoutConstraint</span>.<span class="xcode-function">activate</span>([</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">topAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">topAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">leadingAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">leadingAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">trailingAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">trailingAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">bottomAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">contentLayoutGuide</span>.<span class="xcode-variable">bottomAnchor</span>),</div>
+                <div class="xcode-code-line">            <span class="xcode-variable">scrollViewContainer</span>.<span class="xcode-variable">widthAnchor</span>.<span class="xcode-function">constraint</span>(<span class="xcode-variable">equalTo</span>: <span class="xcode-variable">scrollView</span>.<span class="xcode-variable">frameLayoutGuide</span>.<span class="xcode-variable">widthAnchor</span>),</div>
+                <div class="xcode-code-line">        ])</div>
+                <div class="xcode-code-line">    }</div>
+                <div class="xcode-code-line"></div>
+                <br>
+                <div class="xcode-code-line">    <span class="xcode-keyword">override</span> <span class="xcode-keyword">func</span> <span class="xcode-function">viewWillAppear</span>(<span class="xcode-variable">_</span> <span class="xcode-variable">animated</span>: <span class="xcode-type">Bool</span>) {</div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">super</span>.<span class="xcode-function">viewWillAppear</span>(<span class="xcode-variable">animated</span>)</div>
+                <div class="xcode-code-line">    }</div>
+                <div class="xcode-code-line"></div>
+                <br>
+                <div class="xcode-code-line">    <span class="xcode-keyword">override</span> <span class="xcode-keyword">func</span> <span class="xcode-function">viewWillDisappear</span>(<span class="xcode-variable">_</span> <span class="xcode-variable">animated</span>: <span class="xcode-type">Bool</span>) {</div>
+                <div class="xcode-code-line">        <span class="xcode-keyword">super</span>.<span class="xcode-function">viewWillDisappear</span>(<span class="xcode-variable">animated</span>)</div>
+                <div class="xcode-code-line">    }</div>
                 <div class="xcode-code-line">}</div>
               `;
             } else if (tabText === 'AboutView.swift') {

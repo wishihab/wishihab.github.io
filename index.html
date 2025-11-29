@@ -709,6 +709,39 @@
         font-size: 0.9rem;
       }
       
+      .safari-popup .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+      
+      .safari-popup .tool-item {
+        background: #1c1c1c;
+        border-radius: 12px;
+        padding: 1rem 0.75rem;
+        text-align: center;
+        border: 1px solid #2f2f2f;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      .safari-popup .tool-item img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        display: block;
+      }
+      
+      .safari-popup .tool-item span {
+        color: #ebebeb;
+        font-size: 0.8rem;
+        word-break: break-word;
+      }
+      
       .safari-popup .resume-section {
         text-align: center;
         padding: 3rem 2rem;
@@ -1478,6 +1511,10 @@
                 <i class="fa fa-code" style="font-display: swap;"></i>
                 <div class="app-label">Skills</div>
               </div>
+              <div class="app-icon" data-content="tools" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-wrench" style="font-display: swap;"></i>
+                <div class="app-label">Tools</div>
+              </div>
               <div class="app-icon" data-content="resume" style="will-change: transform, opacity; contain: layout style paint;">
                <i class="fa fa-file-text" style="font-display: swap;"></i>
                <div class="app-label">Resume</div>
@@ -1490,14 +1527,18 @@
                 <i class="fa fa-android" style="font-display: swap;"></i>
                 <div class="app-label">JAKI</div>
               </div>
-            <div class="app-icon" data-content="tlive" style="will-change: transform, opacity; contain: layout style paint;">
-              <i class="fa fa-android" style="font-display: swap;"></i>
-              <div class="app-label">TLIVE</div>
-            </div>
-            <div class="app-icon" data-content="scb" style="will-change: transform, opacity; contain: layout style paint;">
-              <i class="fa fa-globe" style="font-display: swap;"></i>
-              <div class="app-label">SCB</div>
-            </div>
+              <div class="app-icon" data-content="tlive" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-android" style="font-display: swap;"></i>
+                <div class="app-label">TLIVE</div>
+              </div>
+              <div class="app-icon" data-content="wedefend-android" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-android" style="font-display: swap;"></i>
+                <div class="app-label">WeDefend</div>
+              </div>
+              <div class="app-icon" data-content="scb" style="will-change: transform, opacity; contain: layout style paint;">
+                <i class="fa fa-globe" style="font-display: swap;"></i>
+                <div class="app-label">SCB</div>
+              </div>
           </div>
             
             <!-- Dock -->
@@ -1842,9 +1883,10 @@
         { name: 'OneSignal', icon: 'https://www.svgrepo.com/show/331518/onesignal.svg', alt: 'OneSignal' },
         { name: 'Supabase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg', alt: 'Supabase' },
         { name: 'Ubuntu', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg', alt: 'Ubuntu' },
-        { name: 'SSH', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original-wordmark.svg', alt: 'SSH' },
         { name: 'Nginx', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg', alt: 'Nginx' },
         { name: 'Apache', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg', alt: 'Apache' },
+        { name: 'Webmin', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Webmin_Logo.svg/384px-Webmin_Logo.svg.png', alt: 'Webmin' },
+        { name: 'SSH', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original-wordmark.svg', alt: 'SSH' },
         { name: 'Sourcetree', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sourcetree/sourcetree-original-wordmark.svg', alt: 'Sourcetree' },
         { name: 'Composer', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/composer/composer-original.svg', alt: 'Composer' },
         { name: 'Homebrew', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/homebrew/homebrew-original-wordmark.svg', alt: 'Homebrew' },
@@ -2288,6 +2330,14 @@
               return;
             }
             
+            if (contentId === 'wedefend-android') {
+              showExternalLinkConfirmation(
+                'This will open a new tab to the WeDefend Android GitHub repository. Do you want to continue?',
+                'https://github.com/wishihab/WeDefend-Android'
+              );
+              return;
+            }
+            
             // Remove active class from all icons
             allClickableIcons.forEach(i => i.classList.remove('active'));
             
@@ -2306,8 +2356,8 @@
               
               // Handle mobile view - show content section only for non-Safari popup content
               if (window.innerWidth <= 768) {
-                // Check if this is a Safari popup content (about, projects, experience, skills, resume, contact)
-                const safariPopupContents = ['about', 'projects', 'experience', 'skills', 'resume', 'contact'];
+                // Check if this is a Safari popup content (about, projects, experience, skills, tools, resume, contact)
+                const safariPopupContents = ['about', 'projects', 'experience', 'skills', 'tools', 'resume', 'contact'];
                 if (!safariPopupContents.includes(contentId)) {
                   const contentSection = document.querySelector('.content-section');
                   if (contentSection) {
@@ -2500,6 +2550,36 @@
           <!-- iOS Projects -->
           <div class="project-grid" id="ios-projects" style="height: auto; overflow-y: visible; padding-right: 10px; padding-bottom: 1rem;">
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
+              <h3>JAKI Report</h3>
+              <p>Report feature in JAKI iOS App 2024</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
+              <h3>JAKI Wrapped</h3>
+              <p>Year End Report feature in JAKI iOS App 2023 - 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
+              <h3>JAKI Air Quality</h3>
+              <p>Air Quality feature in JAKI iOS App 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
+              <h3>JAKI Akun Warga</h3>
+              <p>Citizen Account feature in JAKI iOS App 2023</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
+              <h3>JAKI Pulau</h3>
+              <p>Island Information feature in JAKI iOS App 2025</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
+              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
+              <h3>JAKI PIN</h3>
+              <p>Security PIN feature in JAKI iOS App 2024</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <img src="images/jaki-ios-other.png" alt="JAKI Other Features" loading="lazy" decoding="async">
               <h3>JAKI Other Features</h3>
               <p>Various other features in JAKI iOS App including multi language localization 2023-2025</p>
@@ -2517,36 +2597,6 @@
               </div>
               <h3>JakCare</h3>
               <p>Mental Health Online Consultation 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-pulau.png" alt="JAKI Pulau" loading="lazy" decoding="async">
-              <h3>JAKI Pulau</h3>
-              <p>Island Information feature in JAKI iOS App 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-report.png" alt="JAKI Report" loading="lazy" decoding="async">
-              <h3>JAKI Report</h3>
-              <p>Report feature in JAKI iOS App 2024</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-wrapped.png" alt="JAKI Wrapped" loading="lazy" decoding="async">
-              <h3>JAKI Wrapped</h3>
-              <p>Year End Report feature in JAKI iOS App 2023 - 2025</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-pin.png" alt="JAKI PIN" loading="lazy" decoding="async">
-              <h3>JAKI PIN</h3>
-              <p>Security PIN feature in JAKI iOS App 2024</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-airquality.png" alt="JAKI Air Quality" loading="lazy" decoding="async">
-              <h3>JAKI Air Quality</h3>
-              <p>Air Quality feature in JAKI iOS App 2023</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-ios-akunwarga.png" alt="JAKI Akun Warga" loading="lazy" decoding="async">
-              <h3>JAKI Akun Warga</h3>
-              <p>Citizen Account feature in JAKI iOS App 2023</p>
             </div>
             <div class="project-card" onclick="window.open('https://apps.apple.com/id/app/jaki/id1509621798?l=id', '_blank')" style="cursor: pointer;">
               <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
@@ -2569,68 +2619,61 @@
           
           <!-- Android Projects -->
           <div class="project-grid" id="android-projects" style="height: auto; overflow-y: visible; padding-right: 10px; padding-bottom: 1rem; display: none;">
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer%;">
               <img src="images/jaki.PNG" alt="Jakarta Kini" loading="lazy" decoding="async">
               <h3>Jakarta Kini (JAKI)</h3>
               <p>JAKEVO - JAKKEPENDUDUKAN (Alpukat) - JAK BANSOS KELUARGA 2022</p>
             </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer%;">
               <img src="images/jaki_jakagd.PNG" alt="JAKAGD" loading="lazy" decoding="async">
               <h3>JAKAGD</h3>
               <p>AMBULAN GAWAT DARURAT - JAKARTA KINI 2022</p>
             </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer%;">
+              <img src="images/jaki-verifikasinik.PNG" alt="Verify ID" loading="lazy" decoding="async">
+              <h3>VERIFY ID</h3>
+              <p>VERIFIKASI NIK - JAKARTA KINI 2021</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer%;">
+              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
+              <h3>TANGERANG LIVE V6</h3>
+              <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer%;">
+              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
+              <h3>LAKSA TLIVE</h3>
+              <p>Layanan Aspirasi Kotak Saran Anda 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer%;">
+              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
+              <h3>PPDB SD TLIVE</h3>
+              <p>PENERIMAAN PESERTA DIDIK BARU 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer%;">
+              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
+              <h3>CUACA TLIVE</h3>
+              <p>KUALITAS UDARA DAN CUACA TLIVE V6 2019</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer%;">
+              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
+              <h3>LOWONGAN KERJA TLIVE</h3>
+              <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG 2020</p>
+            </div>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer%;">
               <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
                 <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
               </div>
               <h3>Bantuan Sosial JAKI</h3>
               <p>Kartu Jakarta Pintar (KJP), Kartu Jakarta Mahasiswa Unggul (KJMU), Kartu Anak Jakarta (KAJ), Kartu Lansia Jakarta (KLJ) and Kartu Penyandang Disabilitas Jakarta (KPDJ) 2022</p>
             </div>
-            <div class="project-card" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab', '_blank')" style="cursor: pointer%;">
               <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
                 <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
               </div>
               <h3>WeFlix</h3>
               <p>Netflix Clone 2022</p>
             </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.jakarta.smartcity.jaki', '_blank')" style="cursor: pointer;">
-              <img src="images/jaki-verifikasinik.PNG" alt="Verify ID" loading="lazy" decoding="async">
-              <h3>VERIFY ID</h3>
-              <p>VERIFIKASI NIK - JAKARTA KINI 2021</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_ppdb.png" alt="PPDB SD TLIVE" loading="lazy" decoding="async">
-              <h3>PPDB SD TLIVE</h3>
-              <p>PENERIMAAN PESERTA DIDIK BARU 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <div style="display: flex; align-items: center; justify-content: center; height: 250px; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;" loading="lazy" decoding="async">
-                <i class="fa fa-android" style="font-size: 4rem; color: #1a1a2e;"></i>
-              </div>
-              <h3>e-Rapor TLIVE</h3>
-              <p>e-Rapor online Sekolah Menengah Pertama Kota Tangerang2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_simpatir_eabsen.PNG" alt="TANGERANG LIVE V6" loading="lazy" decoding="async">
-              <h3>TANGERANG LIVE V6</h3>
-              <p>BERKONTRIBUSI MENGEMBANGKAN TLIVE V6 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_laksa.PNG" alt="LAKSA TLIVE" loading="lazy" decoding="async">
-              <h3>LAKSA TLIVE</h3>
-              <p>Layanan Aspirasi Kotak Saran Anda 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_kerja.PNG" alt="LOWONGAN KERJA TLIVE" loading="lazy" decoding="async">
-              <h3>LOWONGAN KERJA TLIVE</h3>
-              <p>INFORMASI LOWONGAN KERJA KOTA TANGERANG 2020</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=id.go.tangerangkota.tangeranglive&hl=id', '_blank')" style="cursor: pointer;">
-              <img src="images/tlive_cuaca.PNG" alt="CUACA TLIVE" loading="lazy" decoding="async">
-              <h3>CUACA TLIVE</h3>
-              <p>KUALITAS UDARA DAN CUACA TLIVE V6 2019</p>
-            </div>
-            <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer;">
+            <div class="project-card" onclick="window.open('https://github.com/wishihab/wedefend-android', '_blank')" style="cursor: pointer%;">
               <img src="images/wedefend_android.jpg" alt="WEDEFEND ANDROID" loading="lazy" decoding="async">
               <h3>WEDEFEND ANDROID</h3>
               <p>MONITOR AND PROTECT ANDROID FROM REMOTE ACCESS TOOL TROJAN 2018</p>
@@ -2750,12 +2793,14 @@
               <div class="period">Jan 2021 - Present</div>
               <p>Freelance Web Developer - Developed web applications for clients.</p>
             </div>
+            <!--
             <div class="experience-item">
               <h3>Assistant Lecturer</h3>
               <div class="company"><a href="https://unimof.ac.id/" target="_blank" style="color: #007AFF; text-decoration: none;">Universitas Muhammadiyah Maumere</a></div>
               <div class="period">Mar 2025 - Present</div>
               <p>Part-Time Assistant Lecturer - Teaching Mobile and Web Development subjects to digital business students.</p>
             </div>
+            -->
             <div class="experience-item">
               <h3>Student Internship</h3>
               <div class="company"><a href="https://www.neusoft.com/" target="_blank" style="color: #007AFF; text-decoration: none;">Neusoft Nanjing</a></div>
@@ -2815,6 +2860,174 @@
               <i class="fa fa-cogs"></i>
               <h4>DevOps</h4>
               <p>Ubuntu, Nginx, Apache,<br> SSH, Fastlane, CI/CD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tools-popup" class="safari-popup">
+      <div class="safari-header">
+        <div class="safari-controls">
+          <div class="safari-button close"></div>
+          <div class="safari-button minimize"></div>
+          <div class="safari-button maximize"></div>
+        </div>
+        <div class="safari-address-bar">
+          <div class="safari-url">Tools - Programming & DevOps</div>
+        </div>
+      </div>
+      <div class="safari-content">
+        <div id="tools-content">
+          <div class="content-header">
+            <h1>Tools I Use</h1>
+            <p>Programming, DevOps, and productivity tools in my daily workflow</p>
+          </div>
+          <div class="tools-grid">
+            <!-- IDE & Editors -->
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg" alt="Xcode" loading="lazy">
+              <span>Xcode</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio" loading="lazy">
+              <span>Android Studio</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy">
+              <span>VS Code</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/cursor.png" alt="Cursor" loading="lazy">
+              <span>Cursor</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbeaver/dbeaver-original.svg" alt="DBeaver" loading="lazy">
+              <span>DBeaver</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" loading="lazy">
+              <span>Postman</span>
+            </div>
+
+            <!-- Programming Languages -->
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="Swift" loading="lazy">
+              <span>Swift</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" loading="lazy">
+              <span>Java</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy">
+              <span>Python</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy">
+              <span>PHP</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" loading="lazy">
+              <span>HTML</span>
+            </div>
+
+            <!-- Frameworks & Libraries -->
+            <div class="tool-item">
+              <img src="https://getuikit.com/images/uikit-logo.svg" alt="UIKit" loading="lazy">
+              <span>UIKit</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" loading="lazy">
+              <span>Laravel</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/codeigniter/codeigniter-plain.svg" alt="CodeIgniter" loading="lazy">
+              <span>CodeIgniter</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" alt="Firebase" loading="lazy">
+              <span>Firebase</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt="Supabase" loading="lazy">
+              <span>Supabase</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://www.svgrepo.com/show/331518/onesignal.svg" alt="OneSignal" loading="lazy">
+              <span>OneSignal</span>
+            </div>
+
+            <!-- Databases -->
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy">
+              <span>MySQL</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy">
+              <span>PostgreSQL</span>
+            </div>
+
+            <!-- DevOps & Infra -->
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="Ubuntu" loading="lazy">
+              <span>Ubuntu</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy">
+              <span>Nginx</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg" alt="Apache" loading="lazy">
+              <span>Apache</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Webmin_Logo.svg/384px-Webmin_Logo.svg.png" alt="Webmin" loading="lazy">
+              <span>Webmin</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg" alt="DigitalOcean" loading="lazy">
+              <span>DigitalOcean</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ssh/ssh-original-wordmark.svg" alt="SSH" loading="lazy">
+              <span>SSH</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.brandfetch.io/idMBlgerCH/w/300/h/300/theme/dark/icon.png?c=1bxid64Mup7aczewSAYMX&t=1756136810924" alt="Fastlane" loading="lazy">
+              <span>Fastlane</span>
+            </div>
+
+            <!-- Git & Tooling -->
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git CLI" loading="lazy">
+              <span>Git CLI</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" loading="lazy">
+              <span>GitHub</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sourcetree/sourcetree-original-wordmark.svg" alt="Sourcetree" loading="lazy">
+              <span>Sourcetree</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/composer/composer-original.svg" alt="Composer" loading="lazy">
+              <span>Composer</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/homebrew/homebrew-original-wordmark.svg" alt="Homebrew" loading="lazy">
+              <span>Homebrew</span>
+            </div>
+
+            <!-- Productivity & Music -->
+            <div class="tool-item">
+              <img src="https://cdn-icons-png.flaticon.com/128/5968/5968959.png" alt="Spotify" loading="lazy">
+              <span>Spotify</span>
+            </div>
+            <div class="tool-item">
+              <img src="https://cdn-icons-png.flaticon.com/128/14777/14777073.png" alt="Apple Music" loading="lazy">
+              <span>Apple Music</span>
             </div>
           </div>
         </div>
